@@ -1,45 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle');
-    
-    // Funzione per cambiare il file del CV in base alla lingua
-    const updateCVLink = (isEnglish) => {
-        const cvLinks = document.querySelectorAll('.cv-link'); // Seleziona tutti i link CV nella pagina
-        cvLinks.forEach(link => {
-            let currentHref = link.getAttribute('href');
-            if (isEnglish) {
-                // Se è inglese e non ha ancora "-en", lo aggiunge
-                if (!currentHref.includes('-en.pdf')) {
-                    link.setAttribute('href', currentHref.replace('.pdf', '-en.pdf'));
-                }
-            } else {
-                // Se è italiano e ha "-en", lo rimuove
-                if (currentHref.includes('-en.pdf')) {
-                    link.setAttribute('href', currentHref.replace('-en.pdf', '.pdf'));
-                }
-            }
-        });
-    };
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
 
-    // 1. Controllo iniziale al caricamento della pagina
+    // 1. GESTIONE LINGUA (Già esistente)
     const savedLang = localStorage.getItem('language');
     if (savedLang === 'en') {
         document.body.classList.add('english-mode');
         if (langToggle) langToggle.checked = true;
-        updateCVLink(true);
     }
+    langToggle?.addEventListener('change', () => {
+        const isEn = langToggle.checked;
+        document.body.classList.toggle('english-mode', isEn);
+        localStorage.setItem('language', isEn ? 'en' : 'it');
+    });
 
-    // 2. Gestione del click sull'interruttore
-    if (langToggle) {
-        langToggle.addEventListener('change', () => {
-            const isEn = langToggle.checked;
-            if (isEn) {
-                document.body.classList.add('english-mode');
-                localStorage.setItem('language', 'en');
-            } else {
-                document.body.classList.remove('english-mode');
-                localStorage.setItem('language', 'it');
-            }
-            updateCVLink(isEn);
-        });
+    // 2. GESTIONE TEMA
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        themeIcon?.classList.replace('fa-moon', 'fa-sun');
     }
+    themeToggle?.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        themeIcon?.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // 3. GESTIONE MENU MOBILE
+    menuToggle?.addEventListener('click', () => {
+        navMenu?.classList.toggle('active');
+        menuToggle.querySelector('i').classList.toggle('fa-bars');
+        menuToggle.querySelector('i').classList.toggle('fa-xmark');
+    });
 });
