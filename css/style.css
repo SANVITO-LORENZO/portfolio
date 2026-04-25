@@ -51,18 +51,16 @@ body {
    ========================================= */
 header {
     width: 100%;
-    padding: 25px 50px;
+    padding: 15px 50px; /* Ridotto un po' il padding */
     background-color: var(--bg-dark);
-    opacity: 0.98;
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.3s ease;
 }
 
 nav {
-    display: flex;
+    display: flex; /* FONDAMENTALE */
     justify-content: space-between; 
     align-items: center;
     max-width: 1200px;
@@ -85,7 +83,7 @@ nav {
 .nav-menu {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 25px; /* Spazio tra i link */
     align-items: center;
 }
 
@@ -106,18 +104,19 @@ nav {
 
 /* BOTTONI TEMA E MENU MOBILE */
 .theme-btn, .menu-btn {
-    background: none; 
-    border: none; 
+    background: none;
+    border: none;
     color: var(--text-main);
-    font-size: 1.4rem; 
-    cursor: pointer; 
-    display: flex; 
+    font-size: 1.1rem; /* Icone più piccole e eleganti */
+    cursor: pointer;
+    display: flex;
     align-items: center;
-    transition: transform 0.2s ease, color 0.3s ease;
+    padding: 5px;
+    transition: 0.3s;
 }
 
 .menu-btn {
-    display: none; /* Nascosto su PC */
+    display: none;
 }
 
 .theme-btn:hover {
