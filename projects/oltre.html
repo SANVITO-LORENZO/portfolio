@@ -43,54 +43,97 @@
     </nav>
 </header>
 
-<main>
-    <section class="project-detail">
-        <div class="container">
-            <div class="project-title-container">
-                <i class="fa-solid fa-universal-access bot-logo-img" style="display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--neon-glow); background: var(--card-bg); border-radius: 50%; width: 100px; height: 100px;"></i>
-                <div class="project-title-text">
-                    <h1>OLTRE</h1>
-                    <p class="subtitle">Superando le barriere digitali</p>
+<main class="project-detail">
+    <div class="project-title-container">
+        <div class="bot-logo-img">
+            <i class="fa-solid fa-universal-access"></i>
+        </div>
+        <div class="project-title-text">
+            <h1>OLTRE</h1>
+            <p class="tagline">L'App per l'inclusione digitale e l'autonomia</p>
+        </div>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-info">
+            <h2>Il Problema & La Soluzione</h2>
+            <p>
+                <span class="lang-it"><strong>La burocrazia e l'informazione frammentata sono barriere invisibili.</strong> Le persone con disabilità e i loro familiari perdono ore a cercare informazioni su diritti, agevolazioni fiscali e servizi su siti diversi e spesso non aggiornati. <br><br>
+                <strong>Oltre</strong> (progetto AccessEasy) nasce per centralizzare tutto questo. È un'applicazione mobile innovativa che semplifica la ricerca restituendo tempo, consapevolezza e autonomia. Con un'interfaccia semplice, raccoglie informazioni ufficiali e mappa i servizi sul territorio, creando un punto di riferimento unico e affidabile.</span>
+                
+                <span class="lang-en"><strong>Bureaucracy and fragmented information are invisible barriers.</strong> People with disabilities and their families spend hours searching for information on rights, tax breaks, and services across various, often outdated, websites. <br><br>
+                <strong>Oltre</strong> (AccessEasy project) was created to centralize all this. It's an innovative mobile application that simplifies research, restoring time, awareness, and autonomy. With a simple interface, it gathers official information and maps local services, creating a single, reliable point of reference.</span>
+            </p>
+
+            <div class="tech-stack">
+                <h3>Architettura e Tecnologie</h3>
+                <ul>
+                    <li><i class="fa-brands fa-apple"></i> iOS & Android App</li>
+                    <li><i class="fa-solid fa-map-location-dot"></i> Interactive Maps API</li>
+                    <li><i class="fa-solid fa-bell"></i> Push Notification System</li>
+                    <li><i class="fa-solid fa-database"></i> Centralized Database</li>
+                </ul>
+            </div>
+
+            <div class="project-buttons">
+                <a href="https://sanvito-lorenzo.github.io/oltre/" target="_blank" class="btn-neon">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Visita la Landing Page
+                </a>
+                <a href="https://github.com/SANVITO-LORENZO/oltre" target="_blank" class="btn-outline">
+                    <i class="fa-brands fa-github"></i> Codice Progetto
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <h3>Cosa fa di preciso?</h3>
+            
+            <div class="sidebar-feature">
+                <i class="fa-solid fa-user-check"></i>
+                <div>
+                    <strong>Profilo Personalizzato</strong>
+                    <p>Seleziona la tua specifica necessità e ricevi solo le informazioni, le agevolazioni e i diritti che ti riguardano direttamente.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar-feature">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <strong>Mappa Accessibile</strong>
+                    <p>Localizza istantaneamente uffici pubblici, trasporti, strutture sanitarie e associazioni accessibili nelle tue vicinanze.</p>
                 </div>
             </div>
 
-            <div class="project-grid">
-                <div class="project-info">
-                    <h2>Il Progetto</h2>
-                    <p>
-                        <span class="lang-it">Oltre è un'estensione browser progettata per rendere il web accessibile a tutti. Analizza la struttura delle pagine in tempo reale per ottimizzare contrasti, dimensioni dei caratteri e leggibilità per utenti con disabilità visive o cognitive.</span>
-                        <span class="lang-en">Oltre is a browser extension designed to make the web accessible to everyone. It analyzes page structures in real-time to optimize contrasts, font sizes, and readability for users with visual or cognitive disabilities.</span>
-                    </p>
-
-                    <div class="tech-stack">
-                        <h3>Tech Stack</h3>
-                        <ul>
-                            <li>JavaScript (ES6+)</li>
-                            <li>Chrome API</li>
-                            <li>CSS Variable Injector</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-buttons">
-                        <a href="https://github.com/SANVITO-LORENZO.github.io/oltre/" class="btn-neon">Live Demo</a>
-                        <a href="https://github.com/SANVITO-LORENZO" class="btn-outline">View Code</a>
-                    </div>
-                </div>
-
-                <div class="chat-frame" style="padding: 30px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 15px;">
-                    <h3 style="color: var(--neon-glow); margin-bottom: 15px;">Core Features</h3>
-                    <div class="feature-item" style="background: none; border: none; padding: 10px 0;">
-                        <i class="fa-solid fa-circle-half-stroke"></i>
-                        <p><strong>Smart Contrast:</strong> Adattamento dinamico dei colori basato sulle linee guida WCAG.</p>
-                    </div>
-                    <div class="feature-item" style="background: none; border: none; padding: 10px 0;">
-                        <i class="fa-solid fa-font"></i>
-                        <p><strong>Dyslexia Friendly:</strong> Integrazione di font specifici e spaziatura ottimizzata.</p>
-                    </div>
+            <div class="sidebar-feature">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <div>
+                    <strong>Aggiornamenti Reali</strong>
+                    <p>Ricevi notifiche push per rimanere sempre informato su cambiamenti normativi e nuove opportunità o servizi sul territorio.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="features-section" style="margin-top: 40px;">
+        <h2>Gli Obiettivi del Progetto</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-hands-holding-circle"></i>
+                <h4>Autonomia</h4>
+                <p>Aumentare la consapevolezza dei propri diritti per vivere con maggiore indipendenza e partecipazione sociale.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-bridge-water"></i>
+                <h4>Abbattere Barriere</h4>
+                <p>Eliminare l'isolamento informativo creando un ponte diretto e chiaro tra i cittadini e le istituzioni.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-users"></i>
+                <h4>Community & Rete</h4>
+                <p>Mettere in contatto famiglie, caregiver e professionisti con le reti di aiuto e le associazioni locali.</p>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer id="contatti">
