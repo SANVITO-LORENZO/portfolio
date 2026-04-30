@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oltre | Lorenzo Sanvito</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,16 +13,29 @@
 <header>
     <nav>
         <a href="../index.html" class="logo">LORENZO SANVITO</a>
-        <button id="menu-toggle" class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        
+        <button id="menu-toggle" class="menu-btn" aria-label="Apri Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <ul id="nav-menu" class="nav-menu">
             <li><a href="../index.html#progetti"><span class="lang-it">Lavori</span><span class="lang-en">Work</span></a></li>
             <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
-            <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link"><span class="lang-it">Curriculum</span><span class="lang-en">Resume</span></a></li>
-            <li><button id="theme-toggle" class="theme-btn"><i id="theme-icon" class="fa-solid fa-moon"></i></button></li>
+            <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link">
+                <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
+            </a></li>
+            <li>
+                <button id="theme-toggle" class="theme-btn">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </li>
             <li>
                 <div class="lang-toggle-container">
                     <span class="lang-label">IT</span>
-                    <label class="switch"><input type="checkbox" id="lang-toggle"><span class="slider round"></span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="lang-toggle">
+                        <span class="slider round"></span>
+                    </label>
                     <span class="lang-label">EN</span>
                 </div>
             </li>
@@ -32,68 +45,110 @@
 
 <main class="project-detail reveal">
     <div class="project-title-container">
-        <div class="bot-logo-img"><i class="fa-solid fa-universal-access"></i></div>
-        <div>
+        <div class="bot-logo-img">
+            <i class="fa-solid fa-universal-access"></i>
+        </div>
+        <div class="project-title-text">
             <h1>OLTRE</h1>
-            <p class="tagline"><span class="lang-it">Inclusione digitale, un diritto, non un'utopia</span><span class="lang-en">Digital inclusion, a right, not a utopia</span></p>
+            <p class="tagline">L'App per l'inclusione digitale e l'autonomia</p>
         </div>
     </div>
 
     <div class="project-grid">
         <div class="project-info">
-            <h2><span class="lang-it">Oltre la disabilità</span><span class="lang-en">Beyond Disability</span></h2>
+            <h2>Il Problema & La Soluzione</h2>
             <p>
-                <span class="lang-it">L'obiettivo è abbattere le barriere invisibili dell'informazione. Oltre trasforma il caos burocratico in un percorso chiaro, restituendo tempo e consapevolezza a chi ne ha più bisogno.</span>
-                <span class="lang-en">The goal is to break down the invisible barriers of information. Oltre transforms bureaucratic chaos into a clear path, restoring time and awareness to those who need it most.</span>
+                <span class="lang-it"><strong>La burocrazia e l'informazione frammentata sono barriere invisibili.</strong> Le persone con disabilità e i loro familiari perdono ore a cercare informazioni su diritti, agevolazioni fiscali e servizi su siti diversi e spesso non aggiornati. <br><br>
+                <strong>Oltre</strong> nasce per centralizzare tutto questo. È un'applicazione mobile innovativa che semplifica la ricerca restituendo tempo, consapevolezza e autonomia. Con un'interfaccia semplice, raccoglie informazioni ufficiali e mappa i servizi sul territorio, creando un punto di riferimento unico e affidabile.</span>
+                
+                <span class="lang-en"><strong>Bureaucracy and fragmented information are invisible barriers.</strong> People with disabilities and their families spend hours searching for information on rights, tax breaks, and services across various, often outdated, websites. <br><br>
+                <strong>Oltre</strong> was created to centralize all this. It's an innovative mobile application that simplifies research, restoring time, awareness, and autonomy. With a simple interface, it gathers official information and maps local services, creating a single, reliable point of reference.</span>
             </p>
 
-            <h2 style="margin-top: 40px;"><span class="lang-it">Perché Oltre?</span><span class="lang-en">Why Oltre?</span></h2>
-            <p>
-                <span class="lang-it">Oggi trovare informazioni affidabili richiede ore di ricerca. Oltre centralizza i contenuti ufficiali, dai benefici economici ai supporti sanitari, garantendo aggiornamenti costanti e affidabilità totale.</span>
-                <span class="lang-en">Today, finding reliable information requires hours of research. Oltre centralizes official content, from economic benefits to healthcare support, ensuring constant updates and total reliability.</span>
-            </p>
-
-            <h2 style="margin-top: 50px;"><span class="lang-it">I Fondatori</span><span class="lang-en">The Founders</span></h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                <div class="sidebar-box" style="text-align: center;">
-                    <strong>Lorenzo Sanvito</strong>
-                    <p style="font-size: 0.8rem; color: var(--accent);">CO-FOUNDER & DEVELOPER</p>
-                </div>
-                <div class="sidebar-box" style="text-align: center;">
-                    <strong>Andrea Novati</strong>
-                    <p style="font-size: 0.8rem; color: var(--accent);">CO-FOUNDER & LEAD DESIGNER</p>
-                </div>
-                <div class="sidebar-box" style="text-align: center;">
-                    <strong>Nicolò Grisoni</strong>
-                    <p style="font-size: 0.8rem; color: var(--accent);">CO-FOUNDER & RESEARCHER</p>
-                </div>
+            <div class="tech-stack">
+                <h3>Architettura e Tecnologie</h3>
+                <ul>
+                    <li><i class="fa-brands fa-apple"></i> iOS & Android App</li>
+                    <li><i class="fa-solid fa-map-location-dot"></i> Interactive Maps API</li>
+                    <li><i class="fa-solid fa-bell"></i> Push Notification System</li>
+                    <li><i class="fa-solid fa-database"></i> Centralized Database</li>
+                </ul>
             </div>
 
-            <div class="project-buttons" style="margin-top: 40px;">
-                <a href="https://sanvito-lorenzo.github.io/oltre/" target="_blank" class="btn-neon"><span class="lang-it">Sito Web</span><span class="lang-en">Website</span></a>
-                <a href="https://github.com/SANVITO-LORENZO/oltre" target="_blank" class="btn-outline">GitHub</a>
+            <div class="project-buttons">
+                <a href="https://sanvito-lorenzo.github.io/oltre/" target="_blank" class="btn-neon">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Visita la Landing Page
+                </a>
+                <a href="https://github.com/SANVITO-LORENZO/oltre" target="_blank" class="btn-outline">
+                    <i class="fa-brands fa-github"></i> Codice Progetto
+                </a>
             </div>
         </div>
 
         <div class="sidebar-box">
-            <h3><span class="lang-it">Cosa ottieni</span><span class="lang-en">What you get</span></h3>
+            <h3>Cosa fa di preciso?</h3>
+            
             <div class="sidebar-feature">
-                <i class="fa-solid fa-user-gear"></i>
-                <div><strong>Profilo</strong><p>Info filtrate in base alla disabilità.</p></div>
+                <i class="fa-solid fa-user-check"></i>
+                <div>
+                    <strong>Profilo Personalizzato</strong>
+                    <p>Seleziona la tua specifica necessità e ricevi solo le informazioni, le agevolazioni e i diritti che ti riguardano direttamente.</p>
+                </div>
             </div>
+            
             <div class="sidebar-feature">
-                <i class="fa-solid fa-map-marked-alt"></i>
-                <div><strong>Mappa</strong><p>Localizzazione uffici accessibili.</p></div>
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <strong>Mappa Accessibile</strong>
+                    <p>Localizza istantaneamente uffici pubblici, trasporti, strutture sanitarie e associazioni accessibili nelle tue vicinanze.</p>
+                </div>
             </div>
+
             <div class="sidebar-feature">
-                <i class="fa-solid fa-bell"></i>
-                <div><strong>Notifiche</strong><p>Aggiornamenti su agevolazioni e nuove normative.</p></div>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <div>
+                    <strong>Aggiornamenti Reali</strong>
+                    <p>Ricevi notifiche push per rimanere sempre informato su cambiamenti normativi e nuove opportunità o servizi sul territorio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-section" style="margin-top: 40px;">
+        <h2>Gli Obiettivi del Progetto</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-hands-holding-circle"></i>
+                <h4>Autonomia</h4>
+                <p>Aumentare la consapevolezza dei propri diritti per vivere con maggiore indipendenza e partecipazione sociale.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-bridge-water"></i>
+                <h4>Abbattere Barriere</h4>
+                <p>Eliminare l'isolamento informativo creando un ponte diretto e chiaro tra i cittadini e le istituzioni.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-users"></i>
+                <h4>Community & Rete</h4>
+                <p>Mettere in contatto famiglie, caregiver e professionisti con le reti di aiuto e le associazioni locali.</p>
             </div>
         </div>
     </div>
 </main>
 
+<footer id="contatti">
+    <div class="footer-content">
+        <p>© 2026 Lorenzo Sanvito</p>
+        <div class="social-links">
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:lorisanvi2000@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
 <script src="../js/script.js"></script>
 </body>
 </html>
+
 
