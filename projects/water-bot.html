@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Bot | Lorenzo Sanvito</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,16 +13,29 @@
 <header>
     <nav>
         <a href="../index.html" class="logo">LORENZO SANVITO</a>
-        <button id="menu-toggle" class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        
+        <button id="menu-toggle" class="menu-btn" aria-label="Apri Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <ul id="nav-menu" class="nav-menu">
             <li><a href="../index.html#progetti"><span class="lang-it">Lavori</span><span class="lang-en">Work</span></a></li>
             <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
             <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link"><span class="lang-it">Curriculum</span><span class="lang-en">Resume</span></a></li>
-            <li><button id="theme-toggle" class="theme-btn"><i id="theme-icon" class="fa-solid fa-moon"></i></button></li>
+            
+            <li>
+                <button id="theme-toggle" class="theme-btn">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </li>
+
             <li>
                 <div class="lang-toggle-container">
                     <span class="lang-label">IT</span>
-                    <label class="switch"><input type="checkbox" id="lang-toggle"><span class="slider round"></span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="lang-toggle">
+                        <span class="slider round"></span>
+                    </label>
                     <span class="lang-label">EN</span>
                 </div>
             </li>
@@ -32,32 +45,87 @@
 
 <main class="project-detail reveal">
     <div class="project-title-container">
-        <div class="bot-logo-img"><i class="fa-solid fa-droplet"></i></div>
-        <div>
+        <img src="../assets/images/water-bot-logo.jpg" alt="Logo Bot" class="bot-logo-img">
+        <div class="project-title-text">
             <h1>Water Reminder Bot</h1>
-            <p class="tagline"><span class="lang-it">Tracciamento idratazione via Telegram API</span><span class="lang-en">Hydration tracking via Telegram API</span></p>
+            <p class="tagline">
+                <span class="lang-it">Tracciamento tramite Telegram API</span>
+                <span class="lang-en">Hydration tracking via Telegram API</span>
+            </p>
         </div>
     </div>
 
     <div class="project-grid">
         <div class="project-info">
-            <h2><span class="lang-it">Il Progetto</span><span class="lang-en">The Project</span></h2>
-            <p><span class="lang-it">Assistente virtuale intelligente per combattere la disidratazione quotidiana.</span><span class="lang-en">Smart virtual assistant to combat daily dehydration.</span></p>
+            <h2>
+                <span class="lang-it">Descrizione del Progetto</span>
+                <span class="lang-en">Project Description</span>
+            </h2>
+            <p>
+                <span class="lang-it">Un assistente virtuale intelligente progettato per combattere la disidratazione quotidiana. Il bot gestisce un ciclo di conferma con timer di scadenza per garantire l'interazione.</span>
+                <span class="lang-en">A smart virtual assistant designed to combat daily dehydration. The bot manages a confirmation cycle with an expiration timer to ensure interaction.</span>
+            </p>
+            
+            <div class="tech-stack">
+                <h3>Tech Stack</h3>
+                <ul>
+                    <li><i class="fa-brands fa-js"></i> JavaScript</li>
+                    <li><i class="fa-cloud"></i> Cloudflare Workers</li>
+                    <li><i class="fa-solid fa-database"></i> Cloudflare KV</li>
+                    <li><i class="fa-brands fa-telegram"></i> Telegram API</li>
+                </ul>
+            </div>
+
             <div class="project-buttons">
-                <a href="https://t.me/Water_Mem_bot" target="_blank" class="btn-neon">Prova il Bot</a>
-                <a href="https://github.com/SANVITO-LORENZO/telegram-water-bot" target="_blank" class="btn-outline">GitHub</a>
+                <a href="https://t.me/Water_Mem_bot" target="_blank" class="btn-neon">
+                    <i class="fa-brands fa-telegram"></i> 
+                    <span class="lang-it">Prova il Bot</span>
+                    <span class="lang-en">Try the Bot</span>
+                </a>
+                <a href="https://github.com/SANVITO-LORENZO/telegram-water-bot" target="_blank" class="btn-outline">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                </a>
             </div>
         </div>
-        <div class="sidebar-box">
-            <h3>Tech Stack</h3>
-            <div class="pills">
-                <span class="pill">Cloudflare Workers</span>
-                <span class="pill">KV Storage</span>
+
+        <div class="chat-frame">
+            <img src="../assets/images/screen-chat-water-bot.jpg" alt="Screenshot Chat Telegram IT" class="chat-img lang-it">
+            <img src="../assets/images/screen-chat-water-bot-en.jpg" alt="Screenshot Chat Telegram EN" class="chat-img lang-en">
+        </div>
+    </div>
+
+    <div class="features-section">
+        <h2>
+            <span class="lang-it">Funzionalità Chiave</span>
+            <span class="lang-en">Key Features</span>
+        </h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-bell"></i>
+                <h4><span class="lang-it">Sveglie Multiple</span><span class="lang-en">Multiple Alarms</span></h4>
+                <p><span class="lang-it">Gestione di promemoria illimitati.</span><span class="lang-en">Management of unlimited reminders.</span></p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-chart-bar"></i>
+                <h4><span class="lang-it">Barra di Progresso</span><span class="lang-en">Progress Bar</span></h4>
+                <p><span class="lang-it">Visualizzazione grafica dell'obiettivo.</span><span class="lang-en">Graphical display of the goal.</span></p>
             </div>
         </div>
     </div>
 </main>
 
+<footer id="contatti">
+    <div class="footer-content">
+        <p>© 2026 Lorenzo Sanvito</p>
+        <div class="social-links">
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:lorisanvi2000@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
 <script src="../js/script.js"></script>
 </body>
 </html>
+
