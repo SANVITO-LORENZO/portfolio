@@ -28,16 +28,11 @@ body.light-mode {
     padding: 0; 
     box-sizing: border-box; 
     font-family: 'Inter', sans-serif; 
-    cursor: none; 
-    
-    /* Scrollbar per Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: var(--neon-glow) var(--bg-dark);
 }
 
 /* Scrollbar per Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-    width: 12px; /* <-- Aumentato da 8px a 12px per renderla più visibile */
+    width: 12px;
 }
 ::-webkit-scrollbar-track {
     background: var(--bg-dark); 
@@ -45,10 +40,21 @@ body.light-mode {
 ::-webkit-scrollbar-thumb {
     background-color: var(--neon-glow); 
     border-radius: 10px;
-    border: 3px solid var(--bg-dark); /* <-- Aumentato a 3px per mantenere l'effetto "pillola" staccata dai bordi */
+    border: 3px solid var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--accent); 
+}
+
+/* Applica il cursore invisibile SOLO se si usa un mouse vero */
+@media (pointer: fine) {
+    * { cursor: none; }
+}
+
+/* Nasconde il nostro cursore azzurro su tablet e smartphone (touch) */
+@media (pointer: coarse), (hover: none) {
+    .custom-cursor { display: none !important; }
+    * { cursor: auto !important; }
 }
 
 html, body { overflow-x: hidden; position: relative; width: 100%; scroll-behavior: smooth; }
@@ -59,10 +65,8 @@ body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1
    SCROLL PROGRESS BAR
    ========================================= */
 .scroll-progress {
-    position: fixed; top: 0; left: 0; width: 0%; 
-    height: 4px; /* <-- Spessore aumentato (puoi provare anche 8px se la vuoi ancora più marcata) */
-    background: var(--neon-glow); 
-    box-shadow: 0 0 15px var(--neon-glow); /* <-- Glow leggermente aumentato per farla risaltare */
+    position: fixed; top: 0; left: 0; width: 0%; height: 6px;
+    background: var(--neon-glow); box-shadow: 0 0 15px var(--neon-glow);
     z-index: 10000; transition: width 0.1s ease-out; pointer-events: none;
 }
 
@@ -234,11 +238,13 @@ footer { padding: 40px 20px; border-top: 1px solid var(--border-color); color: v
 .social-links a { color: var(--text-muted); font-size: 1.8rem; transition: 0.3s; text-decoration: none; }
 .social-links a:hover { color: var(--neon-glow); transform: translateY(-5px); }
 
-/* Disabilita effetti complessi su mobile per fluidità */
+@media (max-width: 900px) {
+    .grid-container, .about-grid { grid-template-columns: repeat(2, 1fr); }
+    header { padding: 20px; }
+    .project-grid { gap: 40px; }
+}
+
 @media (max-width: 768px) {
-    * { cursor: auto; }
-    .custom-cursor, .scroll-progress, .page-transition { display: none; }
-    .glow-card::before, .sidebar-box::before { display: none; } 
     .menu-btn { display: block; }
     .nav-menu { position: fixed; top: 70px; right: -100%; width: 100%; height: calc(100vh - 70px); background: var(--bg-dark); flex-direction: column; padding: 40px; transition: 0.4s; z-index: 999; border-top: 1px solid var(--border-color); }
     .nav-menu.active { right: 0; }

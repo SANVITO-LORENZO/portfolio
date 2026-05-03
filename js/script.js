@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startTyping = (isEn) => {
         if (!typewriterEl) return;
         clearTimeout(typingTimeout);
-        typewriterEl.textContent = ''; // Svuota il testo
+        typewriterEl.textContent = ''; 
         
         const textToType = isEn 
             ? "Software Developer & Digital Solutions" 
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < textToType.length) {
                 typewriterEl.textContent += textToType.charAt(i);
                 i++;
-                typingTimeout = setTimeout(type, 50); // Velocità di digitazione (50ms)
+                typingTimeout = setTimeout(type, 50); 
             }
         };
-        setTimeout(type, 300); // Ritardo iniziale prima di iniziare a scrivere
+        setTimeout(type, 300); 
     };
 
     // ==========================================
@@ -71,34 +71,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 5. CUSTOM CURSOR
+    // 5. CUSTOM CURSOR (Smart Touch Detection)
     // ==========================================
-
     const cursor = document.querySelector('.custom-cursor');
     
-    // Controlla se il dispositivo supporta il touch o ha un mouse primario
-    const isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+    if (cursor) {
+        let isUsingTouch = false;
 
-    // Attiva il custom cursor SOLO se NON è un dispositivo touch e lo schermo è largo
-    if (cursor && !isTouchDevice && window.innerWidth > 768) {
+        document.addEventListener('touchstart', () => {
+            isUsingTouch = true;
+            cursor.style.display = 'none'; 
+        });
+
         document.addEventListener('mousemove', (e) => {
-            cursor.style.display = 'block'; // Mostra il cursore solo quando il mouse si muove
+            if (isUsingTouch) return; 
+            
+            cursor.style.display = 'block';
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
         
         document.querySelectorAll('a, button, .glow-card').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            link.addEventListener('mouseenter', () => {
+                if (!isUsingTouch) cursor.classList.add('hover');
+            });
+            link.addEventListener('mouseleave', () => {
+                if (!isUsingTouch) cursor.classList.remove('hover');
+            });
         });
 
-        // Nascondi il cursore se il mouse esce dalla finestra del browser
         document.addEventListener('mouseout', () => {
-            cursor.style.display = 'none';
+            if (!isUsingTouch) cursor.style.display = 'none';
         });
-    } else if (cursor) {
-        // Se è un dispositivo touch (tablet/telefono), assicurati che sia spento
-        cursor.style.display = 'none';
     }
 
     // ==========================================
@@ -146,14 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (langToggle) langToggle.checked = true;
     }
     updateCVLink(isEnInit);
-    startTyping(isEnInit); // Avvia l'effetto scrittura al caricamento
+    startTyping(isEnInit); 
 
     langToggle?.addEventListener('change', () => {
         const isEn = langToggle.checked;
         document.body.classList.toggle('english-mode', isEn);
         localStorage.setItem('language', isEn ? 'en' : 'it');
         updateCVLink(isEn);
-        startTyping(isEn); // Riavvia l'effetto scrittura se si cambia lingua
+        startTyping(isEn); 
     });
 
     // ==========================================
