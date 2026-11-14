@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Word Swipe | Daily Puzzle Game in Vanilla JavaScript. Progetto di Lorenzo Sanvito.">
+    <meta name="description" content="Word Swipe | Daily Puzzle Game in Vanilla JavaScript & HTML5 Canvas. Project by Lorenzo Sanvito.">
     <title>Word Swipe | Lorenzo Sanvito</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="page-transition"></div>
+<div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+</div>
 <div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
 
 <header>
     <nav>
-        <a href="../index.html" class="logo">LORENZO SANVITO</a>
-        
-        <button id="menu-toggle" class="menu-btn" aria-label="Apri o chiudi il menu di navigazione" aria-expanded="false">
+        <a href="../index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>LORENZO SANVITO<span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <button id="menu-toggle" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
 
         <ul id="nav-menu" class="nav-menu">
             <li><a href="../index.html#progetti"><span class="lang-it">Lavori</span><span class="lang-en">Work</span></a></li>
-            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
-            <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link">
-                <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
-            </a></li>
+            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li>
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambia tema chiaro/scuro">
+                <a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="cv-link nav-cv-badge">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
+                </a>
+            </li>
+            <li>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle color theme">
                     <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
                 </button>
             </li>
             <li>
                 <div class="lang-toggle-container">
                     <span class="lang-label" aria-hidden="true">IT</span>
-                    <label class="switch" aria-label="Cambia lingua tra Italiano e Inglese">
+                    <label class="switch" aria-label="Switch language">
                         <input type="checkbox" id="lang-toggle">
                         <span class="slider round"></span>
                     </label>
@@ -48,16 +58,21 @@
 </header>
 
 <main class="project-detail reveal">
+    <div class="back-nav">
+        <a href="../index.html#progetti" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="lang-it">Torna ai progetti</span>
+            <span class="lang-en">Back to projects</span>
+        </a>
+    </div>
+
     <div class="project-title-container">
         <div class="bot-logo-img">
-            <i class="fa-solid fa-spell-check" style="font-size: 3rem; color: var(--accent);"></i>
+            <i class="fa-solid fa-spell-check" style="font-size: 2.8rem; color: var(--neon-glow);"></i>
         </div>
         <div class="project-title-text">
             <h1 class="text-reveal"><span>Word Swipe</span></h1>
-            <p class="tagline">
-                <span class="lang-it">Daily Puzzle Game in Vanilla JavaScript</span>
-                <span class="lang-en">Daily Puzzle Game in Vanilla JavaScript</span>
-            </p>
+            <p class="tagline">Daily Puzzle Game in Vanilla JavaScript</p>
         </div>
     </div>
 
@@ -65,14 +80,13 @@
         <div class="project-info">
             <h2 class="text-reveal">
                 <span>
-                <span class="lang-it">Il Progetto</span>
-                <span class="lang-en">The Project</span>
+                    <span class="lang-it">Il Progetto</span>
+                    <span class="lang-en">The Project</span>
                 </span>
             </h2>
             <p>
-                <span class="lang-it">Word Swipe è un mini-gioco web ispirato ai popolari "Daily Puzzle" mobile. L'obiettivo era creare un'esperienza fluida e nativa direttamente nel browser, senza l'uso di framework esterni. <br><br> Il gioco è alimentato da un database di migliaia di livelli pre-calcolati ed estrae un puzzle univoco al giorno, salvando i progressi del giocatore per prevenire tentativi multipli.</span>
-                
-                <span class="lang-en">Word Swipe is a web mini-game inspired by popular mobile "Daily Puzzles". The goal was to create a fluid, native-feeling experience directly in the browser, without using external frameworks. <br><br> The game is powered by a database of thousands of pre-calculated levels and extracts a unique puzzle per day, saving player progress to prevent multiple attempts.</span>
+                <span class="lang-it">Word Swipe è un mini-gioco web ispirato ai popolari "Daily Puzzle" mobile. L'obiettivo era creare un'esperienza fluida e nativa direttamente nel browser, senza l'uso di framework esterni.<br><br>Il gioco è alimentato da un database di migliaia di livelli pre-calcolati ed estrae un puzzle univoco al giorno, salvando i progressi del giocatore in locale per prevenire tentativi multipli.</span>
+                <span class="lang-en">Word Swipe is a web mini-game inspired by popular mobile "Daily Puzzles". The goal was to create a fluid, native-feeling experience directly in the browser, without using external frameworks.<br><br>The game is powered by a database of thousands of pre-calculated levels and extracts a unique puzzle per day, saving player progress locally to prevent multiple attempts.</span>
             </p>
 
             <div class="tech-stack">
@@ -80,18 +94,18 @@
                 <ul>
                     <li><i class="fa-brands fa-js"></i> Vanilla JavaScript (ES6)</li>
                     <li><i class="fa-solid fa-pen-nib"></i> HTML5 Canvas API</li>
-                    <li><i class="fa-brands fa-node-js"></i> Node.js (Algoritmo Generatore)</li>
+                    <li><i class="fa-brands fa-node-js"></i> Node.js (Level Generator)</li>
                     <li><i class="fa-solid fa-database"></i> JSON & LocalStorage</li>
                 </ul>
             </div>
 
             <div class="project-buttons">
-                <a href="https://sanvito-lorenzo.github.io/word-swipe/" target="_blank" class="btn-neon">
-                    <i class="fa-solid fa-gamepad"></i> 
+                <a href="https://sanvito-lorenzo.github.io/word-swipe/" target="_blank" rel="noopener noreferrer" class="btn-neon">
+                    <i class="fa-solid fa-gamepad"></i>
                     <span class="lang-it">Gioca Ora</span>
                     <span class="lang-en">Play Now</span>
                 </a>
-                <a href="https://github.com/SANVITO-LORENZO/word-swipe" target="_blank" class="btn-outline">
+                <a href="https://github.com/SANVITO-LORENZO/word-swipe" target="_blank" rel="noopener noreferrer" class="btn-outline">
                     <i class="fa-brands fa-github"></i> GitHub Code
                 </a>
             </div>
@@ -102,7 +116,7 @@
                 <span class="lang-it">Sfide Tecniche</span>
                 <span class="lang-en">Technical Challenges</span>
             </h3>
-            
+
             <div class="sidebar-feature">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                 <div>
@@ -113,7 +127,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="sidebar-feature">
                 <i class="fa-solid fa-gears"></i>
                 <div>
@@ -130,8 +144,8 @@
                 <div>
                     <strong>Responsive Design</strong>
                     <p>
-                        <span class="lang-it">Utilizzo di variabili `vmin` e `clamp()` nel CSS per garantire che la geometria circolare del gioco sia perfetta su ogni dispositivo.</span>
-                        <span class="lang-en">Use of `vmin` and `clamp()` CSS variables to ensure the circular geometry of the game is perfect on any device.</span>
+                        <span class="lang-it">Utilizzo di unità `vmin` e `clamp()` nel CSS per garantire che la geometria circolare del gioco sia perfetta su ogni dispositivo.</span>
+                        <span class="lang-en">Use of `vmin` and `clamp()` CSS units to ensure the circular geometry of the game scales accurately on any device.</span>
                     </p>
                 </div>
             </div>
@@ -141,12 +155,16 @@
 
 <footer id="contatti">
     <div class="footer-content">
-        <p>© 2026 Lorenzo Sanvito</p>
+        <button id="copy-email-btn" class="copy-email-chip" data-email="lorenzo.sanvito.dev@gmail.com">
+            <i class="fa-regular fa-copy"></i>
+            <span>lorenzo.sanvito.dev@gmail.com</span>
+        </button>
         <div class="social-links">
-            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:lorenzo.sanvito.dev@gmail.com"><i class="fa-solid fa-envelope"></i></a>
         </div>
+        <p class="copyright">© 2026 Lorenzo Sanvito</p>
     </div>
 </footer>
 

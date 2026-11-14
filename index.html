@@ -3,30 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorenzo Sanvito | Portfolio</title>
+    <meta name="description" content="Lorenzo Sanvito | Software Developer & Computer Science Student at University of Milano-Bicocca.">
+    <meta name="theme-color" content="#090b10">
+    <title>Lorenzo Sanvito | Software Developer Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+<!-- [UI: Ambient Overlays & Cursor] -->
 <div class="page-transition"></div>
+<div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+</div>
 <div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
 
+<!-- [HEADER: Glass Navigation] -->
 <header>
     <nav>
-        <a href="index.html" class="logo">LORENZO SANVITO</a>
-        <button id="menu-toggle" class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>LORENZO SANVITO<span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <button id="menu-toggle" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
         <ul id="nav-menu" class="nav-menu">
-            <li><a href="#progetti"><span><span class="lang-it">Lavori</span><span class="lang-en">Work</span></span></a></li>
-            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
-            <li><a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link"><span><span class="lang-it">Curriculum</span><span class="lang-en">Resume</span></span></a></li>
-            <li><button id="theme-toggle" class="theme-btn"><i id="theme-icon" class="fa-solid fa-moon"></i></button></li>
+            <li><a href="#about"><span class="lang-it">Chi Sono</span><span class="lang-en">About</span></a></li>
+            <li><a href="#esperienza"><span class="lang-it">Percorso</span><span class="lang-en">Journey</span></a></li>
+            <li><a href="#progetti"><span class="lang-it">Progetti</span><span class="lang-en">Work</span></a></li>
+            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li>
+                <a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="cv-link nav-cv-badge">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
+                </a>
+            </li>
+            <li>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle color theme">
+                    <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+            </li>
             <li>
                 <div class="lang-toggle-container">
-                    <span class="lang-label">IT</span>
-                    <label class="switch"><input type="checkbox" id="lang-toggle"><span class="slider round"></span></label>
-                    <span class="lang-label">EN</span>
+                    <span class="lang-label" aria-hidden="true">IT</span>
+                    <label class="switch" aria-label="Switch language between Italian and English">
+                        <input type="checkbox" id="lang-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="lang-label" aria-hidden="true">EN</span>
                 </div>
             </li>
         </ul>
@@ -34,164 +65,352 @@
 </header>
 
 <main>
+    <!-- [HERO: Typewriter & Call To Action] -->
     <section class="intro reveal">
         <div id="particles-js"></div>
-        <!-- Il testo qui dentro verrà scritto dinamicamente dal Javascript -->
-        <h2 id="typewriter-element"></h2>
-        
-        <p>
-            <span>
-                <span class="lang-it">Trasformo logica complessa in interfacce pulite. Studente di Informatica focalizzato sullo sviluppo web e l'accessibilità digitale.</span>
-                <span class="lang-en">I turn complex logic into clean interfaces. Computer Science student focused on web development and digital accessibility.</span>
-            </span>
+
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            <span class="lang-it">Studente CS @ Milano-Bicocca • Disponibile per progetti</span>
+            <span class="lang-en">CS Student @ Milano-Bicocca • Available for projects</span>
+        </div>
+
+        <h1 id="sr-title" class="sr-only">Sviluppatore Software & Soluzioni Digitali</h1>
+        <h2 id="typewriter-element" aria-hidden="true"></h2>
+
+        <p class="hero-sub">
+            <span class="lang-it">Trasformo logica complessa in interfacce pulite, veloci e accessibili. Sviluppatore software orientato al problem-solving, all'architettura dei sistemi e al design di prodotti digitali concreti.</span>
+            <span class="lang-en">I turn complex logic into clean, fast, and accessible interfaces. Software developer driven by problem-solving, system architecture, and building impactful digital products.</span>
         </p>
+
         <div class="hero-btns">
-            <a href="#progetti" class="btn-primary"><span><span class="lang-it">Vedi Progetti</span><span class="lang-en">View Projects</span></span></a>
+            <a href="#progetti" class="btn-primary magnetic">
+                <span class="lang-it">Esplora i Progetti</span>
+                <span class="lang-en">Explore Projects</span>
+                <i class="fa-solid fa-arrow-down-long"></i>
+            </a>
+            <a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary cv-link magnetic">
+                <i class="fa-solid fa-download"></i>
+                <span class="lang-it">Scarica CV</span>
+                <span class="lang-en">Download CV</span>
+            </a>
+        </div>
+
+        <div class="hero-metrics">
+            <div class="metric-card">
+                <span class="metric-num">1°</span>
+                <span class="metric-label">
+                    <span class="lang-it">Premio "Idea Impresa" 2025</span>
+                    <span class="lang-en">"Idea Impresa" Winner 2025</span>
+                </span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-num">10+</span>
+                <span class="metric-label">
+                    <span class="lang-it">Tecnologie & Linguaggi</span>
+                    <span class="lang-en">Languages & Tech Stack</span>
+                </span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-num">100%</span>
+                <span class="metric-label">
+                    <span class="lang-it">Focus su Privacy & UI</span>
+                    <span class="lang-en">Privacy & UI Focused</span>
+                </span>
+            </div>
         </div>
     </section>
 
-    <section class="about-section reveal">
-        <div class="about-grid">
-            <div class="about-text">
-                <h3 class="text-reveal"><span><span class="lang-it">Chi Sono</span><span class="lang-en">About Me</span></span></h3>
-                <p>
-                    <span>
-                        <span class="lang-it">Sono uno studente di Informatica presso l'Università di Milano-Bicocca con un solido background tecnico. Unisco la passione per la tecnologia a spiccate doti organizzative e relazionali.</span>
-                        <span class="lang-en">I am a Computer Science student at the University of Milano-Bicocca with a solid technical background. I combine my passion for technology with strong organizational and interpersonal skills.</span>
-                    </span>
-                </p>
+    <!-- [ABOUT: Bento Grid & Interactive Terminal] -->
+    <section id="about" class="about-section reveal">
+        <div class="section-header">
+            <span class="section-tag">// 01. PROFILE</span>
+            <h3 class="text-reveal">
+                <span>
+                    <span class="lang-it">Chi Sono & Arsenale Tecnico</span>
+                    <span class="lang-en">About Me & Tech Arsenal</span>
+                </span>
+            </h3>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Terminal Bio Card -->
+            <div class="bento-card terminal-card glow-card">
+                <div class="terminal-bar">
+                    <div class="terminal-dots">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+                    <span class="terminal-title">lorenzo@bicocca: ~/profile</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="cmd-line"><span class="cmd-prompt">$</span> whoami</p>
+                    <p class="cmd-output">
+                        <span class="lang-it">Sono uno studente di <strong>Informatica presso l'Università di Milano-Bicocca</strong> con un solido background tecnico come Perito Informatico. Appassionato di sviluppo software e problem-solving, ho dimostrato capacità progettuali vincendo concorsi di innovazione e sviluppando soluzioni in team.</span>
+                        <span class="lang-en">I am a <strong>Computer Science student at the University of Milano-Bicocca</strong> with a strong technical background as a Computer Technician. Passionate about software development and problem-solving, with proven project skills through winning innovation competitions and building team solutions.</span>
+                    </p>
+                    <p class="cmd-line"><span class="cmd-prompt">$</span> cat soft_skills.txt</p>
+                    <p class="cmd-output">
+                        <span class="lang-it">Unisco la passione per il codice a spiccate doti organizzative e relazionali, consolidate attraverso esperienze in contesti internazionali come i Giochi Olimpici di Milano Cortina 2026.</span>
+                        <span class="lang-en">I combine my passion for code with strong organizational and interpersonal skills, strengthened through international environments like the Milano Cortina 2026 Olympic Games.</span>
+                    </p>
+                </div>
             </div>
-            <div class="sidebar-box">
-                <h4 style="margin-bottom:15px; color: var(--neon-glow);">Tech Skills</h4>
-                <div class="pills">
-                    <span class="pill">C++</span><span class="pill">Java</span>
-                    <span class="pill">PHP</span><span class="pill">JavaScript</span>
-                    <span class="pill">HTML/CSS</span><span class="pill">SQL</span>
-                    <span class="pill">Linux</span><span class="pill">Git</span>
+
+            <!-- Categorized Tech Stack Card -->
+            <div class="bento-card sidebar-box">
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-code"></i> <span class="lang-it">Linguaggi Core</span><span class="lang-en">Core Languages</span></h4>
+                    <div class="pills">
+                        <span class="pill">C++</span>
+                        <span class="pill">Java</span>
+                        <span class="pill">C#</span>
+                        <span class="pill">JavaScript (ES6+)</span>
+                        <span class="pill">TypeScript</span>
+                        <span class="pill">PHP</span>
+                        <span class="pill">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-layer-group"></i> <span class="lang-it">Web, Mobile & Cloud</span><span class="lang-en">Web, Mobile & Cloud</span></h4>
+                    <div class="pills">
+                        <span class="pill">React Native (Expo)</span>
+                        <span class="pill">HTML5 / CSS3</span>
+                        <span class="pill">Node.js</span>
+                        <span class="pill">Cloudflare Workers</span>
+                        <span class="pill">HTML5 Canvas</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-server"></i> <span class="lang-it">Sistemi & Strumenti</span><span class="lang-en">Systems & Tooling</span></h4>
+                    <div class="pills">
+                        <span class="pill">Linux (Shell)</span>
+                        <span class="pill">Git / GitHub</span>
+                        <span class="pill">Networking (TCP/IP)</span>
+                        <span class="pill">Windows / Linux Admin</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="timeline-section reveal">
-        <h3 class="text-reveal"><span><span class="lang-it">Percorso & Esperienza</span><span class="lang-en">Experience & Education</span></span></h3>
+    <!-- [TIMELINE: Experience & Education] -->
+    <section id="esperienza" class="timeline-section reveal">
+        <div class="section-header" style="text-align: center;">
+            <span class="section-tag">// 02. ROADMAP</span>
+            <h3 class="text-reveal">
+                <span>
+                    <span class="lang-it">Percorso & Esperienza</span>
+                    <span class="lang-en">Experience & Education</span>
+                </span>
+            </h3>
+        </div>
+
         <div class="timeline">
-            
             <div class="timeline-item">
-                <div class="timeline-date">2025 - <span><span class="lang-it">In corso</span><span class="lang-en">Present</span></span></div>
-                <div class="timeline-content">
-                    <h4><span><span class="lang-it">Laurea in Informatica</span><span class="lang-en">Bachelor's in Computer Science</span></span></h4>
-                    <p class="timeline-company">Università degli Studi di Milano-Bicocca</p>
-                    <p><span><span class="lang-it">Approfondimento di logica, architettura dei sistemi e programmazione avanzata.</span><span class="lang-en">Deep dive into logic, system architecture, and advanced programming.</span></span></p>
+                <div class="timeline-date">2025 - <span class="lang-it">In corso</span><span class="lang-en">Present</span></div>
+                <div class="timeline-content glow-card">
+                    <h4><span class="lang-it">Laurea Triennale in Informatica</span><span class="lang-en">Bachelor's Degree in Computer Science</span></h4>
+                    <p class="timeline-company"><i class="fa-solid fa-building-columns"></i> Università degli Studi di Milano-Bicocca • Milano</p>
+                    <p><span class="lang-it">Approfondimento di algoritmi, logica, architettura degli elaboratori e programmazione avanzata.</span><span class="lang-en">Deep dive into algorithms, logic, computer architecture, and advanced programming.</span></p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">02/2026</div>
-                <div class="timeline-content">
-                    <h4><span><span class="lang-it">Volontario Eventi Olimpici</span><span class="lang-en">Olympic Events Volunteer</span></span></h4>
-                    <p class="timeline-company">Fondazione Milano Cortina 2026 (Bormio)</p>
-                    <p><span><span class="lang-it">Problem-solving immediato in ambienti dinamici ad alta pressione.</span><span class="lang-en">Immediate problem-solving in high-pressure, dynamic environments.</span></span></p>
+                <div class="timeline-content glow-card">
+                    <h4><span class="lang-it">Volontario Eventi Olimpici - Team26</span><span class="lang-en">Olympic Events Volunteer - Team26</span></h4>
+                    <p class="timeline-company"><i class="fa-solid fa-snowflake"></i> Fondazione Milano Cortina 2026 • Bormio</p>
+                    <p><span class="lang-it">Gestione logistica, assistenza alle delegazioni internazionali e problem-solving immediato in ambienti dinamici ad alta pressione.</span><span class="lang-en">Logistical support, assistance to international delegations, and immediate problem-solving in high-pressure environments.</span></p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">09/2025 - <span class="lang-it">In corso</span><span class="lang-en">Present</span></div>
+                <div class="timeline-content glow-card">
+                    <h4><span class="lang-it">Event Steward</span><span class="lang-en">Event Steward</span></h4>
+                    <p class="timeline-company"><i class="fa-solid fa-users-gear"></i> Manpower • Lombardia</p>
+                    <p><span class="lang-it">Gestione del pubblico e risoluzione rapida di criticità durante eventi su larga scala.</span><span class="lang-en">Crowd management and rapid issue resolution during large-scale events.</span></p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">2025</div>
-                <div class="timeline-content">
-                    <h4>Vincitore Concorso "Idea Impresa"</h4>
-                    <p class="timeline-company">Camera di Commercio Como-Lecco</p>
-                    <p><span><span class="lang-it">Ideazione e sviluppo dell'app AccessEasy. Responsabile del design UI e logica applicativa.</span><span class="lang-en">Ideation and development of the AccessEasy app. Responsible for UI design and app logic.</span></span></p>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">06/2024</div>
-                <div class="timeline-content">
-                    <h4>IT Support & Development</h4>
-                    <p class="timeline-company">Aristech</p>
-                    <p><span><span class="lang-it">Supporto operativo allo sviluppo di software aziendale e manutenzione hardware.</span><span class="lang-en">Operational support for corporate software development and hardware maintenance.</span></span></p>
+                <div class="timeline-content glow-card">
+                    <h4><span class="lang-it">Vincitore Concorso "Idea Impresa"</span><span class="lang-en">Winner of "Idea Impresa" Competition</span></h4>
+                    <p class="timeline-company"><i class="fa-solid fa-trophy"></i> Camera di Commercio Como-Lecco</p>
+                    <p><span class="lang-it">Ideazione e sviluppo del progetto AccessEasy. Responsabile del design dell'interfaccia utente (UI) e della logica applicativa.</span><span class="lang-en">Ideation and development of the AccessEasy project. Led UI design and core application logic.</span></p>
                 </div>
             </div>
 
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" class="btn-secondary cv-link">
-                <i class="fa-solid fa-download"></i> <span><span class="lang-it">Scarica CV Completo</span><span class="lang-en">Download Full CV</span></span>
-            </a>
+            <div class="timeline-item">
+                <div class="timeline-date">2020 - 2025</div>
+                <div class="timeline-content glow-card">
+                    <h4><span class="lang-it">Diploma di Perito Informatico</span><span class="lang-en">High School Diploma in Computer Science</span></h4>
+                    <p class="timeline-company"><i class="fa-solid fa-graduation-cap"></i> IIS Jean Monnet • Mariano Comense</p>
+                    <p><span class="lang-it">Specializzazione in programmazione Object-Oriented (Java/C++), progettazione database SQL e architettura dei sistemi.</span><span class="lang-en">Specialization in Object-Oriented Programming (Java/C++), SQL database design, and system architecture.</span></p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">06/2024</div>
+                <div class="timeline-content glow-card">
+                    <h4>IT Support & Development Intern</h4>
+                    <p class="timeline-company"><i class="fa-solid fa-laptop-code"></i> Aristech • Seregno</p>
+                    <p><span class="lang-it">Supporto operativo allo sviluppo di software aziendale, test funzionali e configurazione di sistemi in ambiente business.</span><span class="lang-en">Operational support for corporate software development, functional testing, and business OS configuration.</span></p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- [PROJECTS: Interactive Showcase] -->
     <section id="progetti">
-        <h3 class="text-reveal" style="display: block; text-align: center; margin-bottom: 40px; font-size: 2rem;"><span><span class="lang-it">I Miei Progetti</span><span class="lang-en">My Projects</span></span></h3>
+        <div class="section-header" style="text-align: center;">
+            <span class="section-tag">// 03. SELECTED WORKS</span>
+            <h3 class="text-reveal">
+                <span>
+                    <span class="lang-it">I Miei Progetti</span>
+                    <span class="lang-en">Featured Projects</span>
+                </span>
+            </h3>
+        </div>
+
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">
+                <span class="lang-it">Tutti</span><span class="lang-en">All</span>
+            </button>
+            <button class="filter-btn" data-filter="mobile">Mobile & Inclusion</button>
+            <button class="filter-btn" data-filter="web">Web & Serverless</button>
+        </div>
+
         <div class="grid-container">
-            
-            <a href="projects/ringsync.html" class="glow-card reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                <div class="card-image"><i class="fa-solid fa-ring placeholder-icon"></i></div>
+            <!-- Project 01: RingSync -->
+            <a href="projects/ringsync.html" class="glow-card reveal project-card-item" data-category="mobile" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+                <div class="card-image">
+                    <span class="card-index">01</span>
+                    <i class="fa-solid fa-ring placeholder-icon"></i>
+                    <span class="card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </div>
                 <div class="card-content">
                     <h3>RingSync</h3>
                     <p>
-                        <span>
-                            <span class="lang-it">App mobile privacy-first per anello anticoncezionale.</span>
-                            <span class="lang-en">Privacy-first mobile app for contraceptive ring.</span>
-                        </span>
+                        <span class="lang-it">App mobile privacy-first per il tracciamento dell'anello anticoncezionale con archiviazione 100% locale.</span>
+                        <span class="lang-en">Privacy-first mobile app for contraceptive ring tracking with 100% local storage.</span>
                     </p>
-                    <div class="pills"><span class="pill">React Native</span><span class="pill">Privacy</span></div>
+                    <div class="pills">
+                        <span class="pill">React Native</span>
+                        <span class="pill">TypeScript</span>
+                        <span class="pill">Privacy</span>
+                    </div>
                 </div>
             </a>
 
-            <a href="projects/water-bot.html" class="glow-card reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                <div class="card-image"><i class="fa-solid fa-droplet placeholder-icon"></i></div>
+            <!-- Project 02: Water Bot -->
+            <a href="projects/water-bot.html" class="glow-card reveal project-card-item" data-category="web" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+                <div class="card-image">
+                    <span class="card-index">02</span>
+                    <i class="fa-solid fa-droplet placeholder-icon"></i>
+                    <span class="card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </div>
                 <div class="card-content">
                     <h3>Water Reminder Bot</h3>
-                    <p><span><span class="lang-it">App Telegram con Cloudflare Workers.</span><span class="lang-en">Telegram App with Cloudflare Workers.</span></span></p>
-                    <div class="pills"><span class="pill">JS</span><span class="pill">Serverless</span></div>
+                    <p>
+                        <span class="lang-it">Assistente Telegram serverless su infrastruttura Cloudflare Workers e database KV.</span>
+                        <span class="lang-en">Serverless Telegram assistant powered by Cloudflare Workers and KV storage.</span>
+                    </p>
+                    <div class="pills">
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">Cloudflare Workers</span>
+                        <span class="pill">Serverless</span>
+                    </div>
                 </div>
             </a>
 
-            <a href="projects/oltre.html" class="glow-card reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                <div class="card-image"><i class="fa-solid fa-universal-access placeholder-icon"></i></div>
+            <!-- Project 03: Oltre -->
+            <a href="projects/oltre.html" class="glow-card reveal project-card-item" data-category="mobile" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+                <div class="card-image">
+                    <span class="card-index">03</span>
+                    <i class="fa-solid fa-universal-access placeholder-icon"></i>
+                    <span class="card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </div>
                 <div class="card-content">
                     <h3>Oltre | Startup Inclusiva</h3>
-                    <p><span><span class="lang-it">App per centralizzare i diritti e servizi per la disabilità.</span><span class="lang-en">App to centralize disability rights and services.</span></span></p>
-                    <div class="pills"><span class="pill">Mobile UI</span><span class="pill">Accessibility</span></div>
+                    <p>
+                        <span class="lang-it">Piattaforma per centralizzare diritti, agevolazioni e mappe accessibili per la disabilità.</span>
+                        <span class="lang-en">Platform to centralize disability rights, tax benefits, and accessible maps.</span>
+                    </p>
+                    <div class="pills">
+                        <span class="pill">Mobile UI</span>
+                        <span class="pill">Accessibility</span>
+                        <span class="pill">Maps API</span>
+                    </div>
                 </div>
             </a>
 
-            <a href="projects/word-swipe.html" class="glow-card reveal" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                <div class="card-image"><i class="fa-solid fa-spell-check placeholder-icon"></i></div>
+            <!-- Project 04: Word Swipe -->
+            <a href="projects/word-swipe.html" class="glow-card reveal project-card-item" data-category="web" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+                <div class="card-image">
+                    <span class="card-index">04</span>
+                    <i class="fa-solid fa-spell-check placeholder-icon"></i>
+                    <span class="card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </div>
                 <div class="card-content">
                     <h3>Word Swipe Game</h3>
                     <p>
-                        <span>
-                            <span class="lang-it">Daily puzzle game fluido in Vanilla JS.</span>
-                            <span class="lang-en">Fluid daily puzzle game in Vanilla JS.</span>
-                        </span>
+                        <span class="lang-it">Daily puzzle game fluido in Vanilla JS con motore grafico HTML5 Canvas e generatore Node.js.</span>
+                        <span class="lang-en">Fluid daily puzzle game in Vanilla JS with HTML5 Canvas engine and Node.js generator.</span>
                     </p>
-                    <div class="pills"><span class="pill">JS</span><span class="pill">Canvas</span><span class="pill">Node.js</span></div>
+                    <div class="pills">
+                        <span class="pill">Vanilla JS</span>
+                        <span class="pill">HTML5 Canvas</span>
+                        <span class="pill">Node.js</span>
+                    </div>
                 </div>
             </a>
 
-            
-            <div class="glow-card reveal" style="cursor:default" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                <div class="card-image"><i class="fa-solid fa-gear placeholder-icon spinning-gear"></i></div>
+            <!-- WIP Card -->
+            <div class="glow-card reveal project-card-item" data-category="mobile web" style="cursor:default" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                <div class="card-image">
+                    <span class="card-index">05</span>
+                    <i class="fa-solid fa-gear placeholder-icon spinning-gear"></i>
+                </div>
                 <div class="card-content">
-                    <h3><span><span class="lang-it">Prossimo Progetto</span><span class="lang-en">Next Project</span></span></h3>
-                    <p><span><span class="lang-it">Nuove soluzioni in fase di sviluppo.</span><span class="lang-en">New solutions under development.</span></span></p>
-                    <div class="pills"><span class="pill">WIP</span></div>
+                    <h3><span class="lang-it">Prossimo Progetto</span><span class="lang-en">Next Lab Project</span></h3>
+                    <p>
+                        <span class="lang-it">Nuove architetture e soluzioni software attualmente in fase di prototipazione.</span>
+                        <span class="lang-en">New architectures and software solutions currently in prototyping phase.</span>
+                    </p>
+                    <div class="pills"><span class="pill">In Progress</span></div>
                 </div>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
+<!-- [FOOTER: Contact & Quick Copy] -->
+<footer id="contatti">
     <div class="footer-content">
-        <p>© 2026 Lorenzo Sanvito</p>
-        <div class="social-links">
-            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:lorenzo.sanvito.dev@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <div class="footer-cta">
+            <h4>
+                <span class="lang-it">Costruiamo qualcosa insieme?</span>
+                <span class="lang-en">Let's build something together</span>
+            </h4>
+            <button id="copy-email-btn" class="copy-email-chip" data-email="lorenzo.sanvito.dev@gmail.com">
+                <i class="fa-regular fa-copy"></i>
+                <span>lorenzo.sanvito.dev@gmail.com</span>
+            </button>
         </div>
+
+        <div class="social-links">
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:lorenzo.sanvito.dev@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+
+        <p class="copyright">© 2026 Lorenzo Sanvito • Crafted with precision in Milan</p>
     </div>
 </footer>
 

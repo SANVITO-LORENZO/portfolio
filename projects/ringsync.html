@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RingSync | App per il tracciamento dell'anello anticoncezionale. Progetto di Lorenzo Sanvito.">
+    <meta name="description" content="RingSync | Privacy-first mobile app for contraceptive ring tracking. Built by Lorenzo Sanvito.">
     <title>RingSync | Lorenzo Sanvito</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="page-transition"></div>
+<div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+</div>
 <div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
 
 <header>
     <nav>
-        <a href="../index.html" class="logo">LORENZO SANVITO</a>
-        
-        <button id="menu-toggle" class="menu-btn" aria-label="Apri o chiudi il menu di navigazione" aria-expanded="false">
+        <a href="../index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>LORENZO SANVITO<span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <button id="menu-toggle" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
 
         <ul id="nav-menu" class="nav-menu">
-            <li><a href="../index.html#progetti"><span><span class="lang-it">Lavori</span><span class="lang-en">Work</span></span></a></li>
-            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
-            <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link">
-                <span><span class="lang-it">Curriculum</span><span class="lang-en">Resume</span></span>
-            </a></li>
+            <li><a href="../index.html#progetti"><span class="lang-it">Lavori</span><span class="lang-en">Work</span></a></li>
+            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li>
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambia tema chiaro/scuro">
+                <a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="cv-link nav-cv-badge">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
+                </a>
+            </li>
+            <li>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle color theme">
                     <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
                 </button>
             </li>
             <li>
                 <div class="lang-toggle-container">
                     <span class="lang-label" aria-hidden="true">IT</span>
-                    <label class="switch" aria-label="Cambia lingua tra Italiano e Inglese">
+                    <label class="switch" aria-label="Switch language">
                         <input type="checkbox" id="lang-toggle">
                         <span class="slider round"></span>
                     </label>
@@ -48,22 +58,25 @@
 </header>
 
 <main class="project-detail reveal">
+    <div class="back-nav">
+        <a href="../index.html#progetti" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="lang-it">Torna ai progetti</span>
+            <span class="lang-en">Back to projects</span>
+        </a>
+    </div>
+
     <div class="project-title-container">
-        <!-- Logo -->
-        <img src="../assets/images/ringsync-logo.png" alt="Logo RingSync" class="bot-logo-img" style="width: 130px; height: 130px;">
-        
+        <img src="../assets/images/ringsync-logo.png" alt="Logo RingSync" class="bot-logo-img" style="width: 120px; height: 120px;">
         <div class="project-title-text">
             <h1 class="text-reveal"><span>RingSync</span></h1>
             <p class="tagline">
-                <span>
-                    <span class="lang-it">App per il tracciamento dell'anello anticoncezionale</span>
-                    <span class="lang-en">Contraceptive ring tracking app</span>
-                </span>
+                <span class="lang-it">App per il tracciamento dell'anello anticoncezionale</span>
+                <span class="lang-en">Contraceptive ring tracking app</span>
             </p>
         </div>
     </div>
 
-    <!-- Griglia: Info a sinistra, Screenshot a destra -->
     <div class="project-grid">
         <div class="project-info">
             <h2 class="text-reveal">
@@ -73,10 +86,8 @@
                 </span>
             </h2>
             <p>
-                <span>
-                    <span class="lang-it"><strong>RingSync</strong> è un'applicazione mobile sviluppata per tracciare con precisione millimetrica l'inserimento e la rimozione dell'anello anticoncezionale. <br><br> Il focus principale dell'app è la <strong>Privacy</strong>: non utilizza alcun server o database in cloud. Tutti i dati medici e sensibili vengono salvati esclusivamente in locale sul dispositivo tramite AsyncStorage, supportati da un sistema di notifiche locali. È stata inoltre implementata una "Modalità Discreta" per mascherare i testi delle notifiche, garantendo all'utente la massima riservatezza in ogni momento.</span>
-                    <span class="lang-en"><strong>RingSync</strong> is a mobile application developed to track contraceptive ring insertion and removal with millimeter precision. <br><br> The app's main focus is <strong>Privacy</strong>: it doesn't use any cloud servers or databases. All sensitive medical data is saved exclusively locally on the device via AsyncStorage, supported by a local notification system. A "Discrete Mode" has also been implemented to mask notification texts, ensuring maximum privacy for the user at all times.</span>
-                </span>
+                <span class="lang-it"><strong>RingSync</strong> è un'applicazione mobile sviluppata per tracciare con precisione millimetrica l'inserimento e la rimozione dell'anello anticoncezionale.<br><br>Il focus principale dell'app è la <strong>Privacy</strong>: non utilizza alcun server o database in cloud. Tutti i dati medici e sensibili vengono salvati esclusivamente in locale sul dispositivo tramite AsyncStorage, supportati da un sistema di notifiche locali. È stata inoltre implementata una "Modalità Discreta" per mascherare i testi delle notifiche, garantendo all'utente la massima riservatezza in ogni momento.</span>
+                <span class="lang-en"><strong>RingSync</strong> is a mobile application developed to track contraceptive ring insertion and removal with millimeter precision.<br><br>The app's main focus is <strong>Privacy</strong>: it doesn't use any cloud servers or databases. All sensitive medical data is saved exclusively locally on the device via AsyncStorage, supported by a local notification system. A "Discrete Mode" has also been implemented to mask notification texts, ensuring maximum privacy for the user at all times.</span>
             </p>
 
             <div class="tech-stack">
@@ -89,44 +100,34 @@
                 </ul>
             </div>
 
-            <!-- Bottoni -->
-            <div class="project-buttons" style="display: flex; flex-wrap: wrap; gap: 15px;">
-                
+            <div class="project-buttons">
                 <a href="../assets/downloads/RingSync.apk" class="btn-neon" download>
-                    <i class="fa-brands fa-android"></i> 
-                    <span>
-                        <span class="lang-it">Scarica APK</span>
-                        <span class="lang-en">Download APK</span>
-                    </span>
-                </a>
-                
-                <a href="#" class="btn-outline" style="opacity: 0.6; cursor: not-allowed; border-style: dashed;" onclick="event.preventDefault();">
-                    <i class="fa-brands fa-google-play"></i> 
-                    <span>
-                        <span class="lang-it">Play Store (In arrivo)</span>
-                        <span class="lang-en">Play Store (Coming Soon)</span>
-                    </span>
+                    <i class="fa-brands fa-android"></i>
+                    <span class="lang-it">Scarica APK</span>
+                    <span class="lang-en">Download APK</span>
                 </a>
 
-                <a href="https://github.com/SANVITO-LORENZO/ringsync" target="_blank" class="btn-outline">
-                    <i class="fa-brands fa-github"></i> 
-                    <span>
-                        <span class="lang-it">Codice Progetto</span>
-                        <span class="lang-en">GitHub Code</span>
-                    </span>
+                <a href="#" class="btn-outline" style="opacity: 0.6; cursor: not-allowed; border-style: dashed;" onclick="event.preventDefault();">
+                    <i class="fa-brands fa-google-play"></i>
+                    <span class="lang-it">Play Store (In arrivo)</span>
+                    <span class="lang-en">Play Store (Coming Soon)</span>
+                </a>
+
+                <a href="https://github.com/SANVITO-LORENZO/ringsync" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                    <i class="fa-brands fa-github"></i>
+                    <span class="lang-it">Codice Progetto</span>
+                    <span class="lang-en">GitHub Code</span>
                 </a>
             </div>
         </div>
 
-        <!-- Lo screenshot affiancato alla descrizione con switch lingua -->
         <div class="chat-frame" style="align-self: center;">
             <img src="../assets/images/ringsync-screen.jpg" alt="Screenshot RingSync App IT" class="chat-img lang-it">
             <img src="../assets/images/ringsync-screen-en.jpg" alt="Screenshot RingSync App EN" class="chat-img lang-en">
         </div>
     </div>
 
-    <!-- Sezione Sfide Tecniche strutturata a griglia orizzontale in basso -->
-    <div class="features-section" style="margin-top: 20px;">
+    <div class="features-section">
         <h2 class="text-reveal">
             <span>
                 <span class="lang-it">Sfide Tecniche</span>
@@ -137,43 +138,33 @@
             <div class="feature-item">
                 <i class="fa-solid fa-stopwatch"></i>
                 <h4>
-                    <span>
-                        <span class="lang-it">Notifiche Infallibili</span>
-                        <span class="lang-en">Flawless Notifications</span>
-                    </span>
+                    <span class="lang-it">Notifiche Infallibili</span>
+                    <span class="lang-en">Flawless Notifications</span>
                 </h4>
                 <p>
-                    <span>
-                        <span class="lang-it">Superamento dei limiti Android calcolando i trigger in secondi esatti invece del calendario di sistema.</span>
-                        <span class="lang-en">Overcoming Android limits by calculating triggers in exact seconds instead of system calendar.</span>
-                    </span>
+                    <span class="lang-it">Superamento dei limiti Android calcolando i trigger in secondi esatti invece del calendario di sistema.</span>
+                    <span class="lang-en">Overcoming Android limits by calculating triggers in exact seconds instead of system calendar.</span>
                 </p>
             </div>
-            
+
             <div class="feature-item">
                 <i class="fa-solid fa-shield-halved"></i>
                 <h4>Privacy First</h4>
                 <p>
-                    <span>
-                        <span class="lang-it">Nessun database in cloud. Archiviazione isolata sul device per la massima sicurezza dei dati medici.</span>
-                        <span class="lang-en">No cloud database. Isolated storage on the device for maximum medical data security.</span>
-                    </span>
+                    <span class="lang-it">Nessun database in cloud. Archiviazione isolata sul device per la massima sicurezza dei dati medici.</span>
+                    <span class="lang-en">No cloud database. Isolated storage on the device for maximum medical data security.</span>
                 </p>
             </div>
 
             <div class="feature-item">
                 <i class="fa-solid fa-calendar-days"></i>
                 <h4>
-                    <span>
-                        <span class="lang-it">Calendario Generativo</span>
-                        <span class="lang-en">Generative Calendar</span>
-                    </span>
+                    <span class="lang-it">Calendario Generativo</span>
+                    <span class="lang-en">Generative Calendar</span>
                 </h4>
                 <p>
-                    <span>
-                        <span class="lang-it">Algoritmo matematico che renderizza dinamicamente i cicli di copertura e pausa su componenti React Native.</span>
-                        <span class="lang-en">Mathematical algorithm that dynamically renders coverage and pause cycles on React Native components.</span>
-                    </span>
+                    <span class="lang-it">Algoritmo matematico che renderizza dinamicamente i cicli di copertura e pausa su componenti React Native.</span>
+                    <span class="lang-en">Mathematical algorithm that dynamically renders coverage and pause cycles on React Native components.</span>
                 </p>
             </div>
         </div>
@@ -182,12 +173,16 @@
 
 <footer id="contatti">
     <div class="footer-content">
-        <p>© 2026 Lorenzo Sanvito</p>
+        <button id="copy-email-btn" class="copy-email-chip" data-email="lorenzo.sanvito.dev@gmail.com">
+            <i class="fa-regular fa-copy"></i>
+            <span>lorenzo.sanvito.dev@gmail.com</span>
+        </button>
         <div class="social-links">
-            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:lorisanvi2000@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:lorenzo.sanvito.dev@gmail.com"><i class="fa-solid fa-envelope"></i></a>
         </div>
+        <p class="copyright">© 2026 Lorenzo Sanvito</p>
     </div>
 </footer>
 

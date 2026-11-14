@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Water Reminder Bot | Tracciamento idratazione tramite Telegram API. Progetto di Lorenzo Sanvito.">
+    <meta name="description" content="Water Reminder Bot | Hydration tracking via Telegram API & Cloudflare Workers. Project by Lorenzo Sanvito.">
     <title>Water Bot | Lorenzo Sanvito</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="page-transition"></div>
+<div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+</div>
 <div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
 
 <header>
     <nav>
-        <a href="../index.html" class="logo">LORENZO SANVITO</a>
-        
-        <button id="menu-toggle" class="menu-btn" aria-label="Apri o chiudi il menu di navigazione" aria-expanded="false">
+        <a href="../index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>LORENZO SANVITO<span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <button id="menu-toggle" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
 
         <ul id="nav-menu" class="nav-menu">
             <li><a href="../index.html#progetti"><span class="lang-it">Lavori</span><span class="lang-en">Work</span></a></li>
-            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank">GitHub</a></li>
-            <li><a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" class="cv-link"><span class="lang-it">Curriculum</span><span class="lang-en">Resume</span></a></li>
-            
+            <li><a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li>
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambia tema chiaro/scuro">
+                <a href="../assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="cv-link nav-cv-badge">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span class="lang-it">Curriculum</span><span class="lang-en">Resume</span>
+                </a>
+            </li>
+            <li>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle color theme">
                     <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
                 </button>
             </li>
-
             <li>
                 <div class="lang-toggle-container">
                     <span class="lang-label" aria-hidden="true">IT</span>
-                    <label class="switch" aria-label="Cambia lingua tra Italiano e Inglese">
+                    <label class="switch" aria-label="Switch language">
                         <input type="checkbox" id="lang-toggle">
                         <span class="slider round"></span>
                     </label>
@@ -48,12 +58,20 @@
 </header>
 
 <main class="project-detail reveal">
+    <div class="back-nav">
+        <a href="../index.html#progetti" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="lang-it">Torna ai progetti</span>
+            <span class="lang-en">Back to projects</span>
+        </a>
+    </div>
+
     <div class="project-title-container">
-        <img src="../assets/images/water-bot-logo.jpg" alt="Logo Bot" class="bot-logo-img">
+        <img src="../assets/images/water-bot-logo.jpg" alt="Logo Water Bot" class="bot-logo-img">
         <div class="project-title-text">
             <h1 class="text-reveal"><span>Water Reminder Bot</span></h1>
             <p class="tagline">
-                <span class="lang-it">Tracciamento tramite Telegram API</span>
+                <span class="lang-it">Tracciamento idratazione tramite Telegram API</span>
                 <span class="lang-en">Hydration tracking via Telegram API</span>
             </p>
         </div>
@@ -63,32 +81,32 @@
         <div class="project-info">
             <h2 class="text-reveal">
                 <span>
-                <span class="lang-it">Descrizione del Progetto</span>
-                <span class="lang-en">Project Description</span>
+                    <span class="lang-it">Descrizione del Progetto</span>
+                    <span class="lang-en">Project Description</span>
                 </span>
             </h2>
             <p>
-                <span class="lang-it">Un assistente virtuale intelligente progettato per combattere la disidratazione quotidiana. Il bot gestisce un ciclo di conferma con timer di scadenza per garantire l'interazione.</span>
-                <span class="lang-en">A smart virtual assistant designed to combat daily dehydration. The bot manages a confirmation cycle with an expiration timer to ensure interaction.</span>
+                <span class="lang-it">Un assistente virtuale intelligente progettato per combattere la disidratazione quotidiana. Il bot gestisce un ciclo di conferma interattivo con timer di scadenza su architettura serverless per garantire zero latenza e massima affidabilità.</span>
+                <span class="lang-en">A smart virtual assistant designed to combat daily dehydration. The bot manages an interactive confirmation cycle with an expiration timer on a serverless architecture to ensure zero latency and high reliability.</span>
             </p>
-            
+
             <div class="tech-stack">
                 <h3>Tech Stack</h3>
                 <ul>
                     <li><i class="fa-brands fa-js"></i> JavaScript</li>
-                    <li><i class="fa-cloud"></i> Cloudflare Workers</li>
+                    <li><i class="fa-solid fa-cloud"></i> Cloudflare Workers</li>
                     <li><i class="fa-solid fa-database"></i> Cloudflare KV</li>
-                    <li><i class="fa-brands fa-telegram"></i> Telegram API</li>
+                    <li><i class="fa-brands fa-telegram"></i> Telegram Bot API</li>
                 </ul>
             </div>
 
             <div class="project-buttons">
-                <a href="https://t.me/Water_Mem_bot" target="_blank" class="btn-neon">
-                    <i class="fa-brands fa-telegram"></i> 
+                <a href="https://t.me/Water_Mem_bot" target="_blank" rel="noopener noreferrer" class="btn-neon">
+                    <i class="fa-brands fa-telegram"></i>
                     <span class="lang-it">Prova il Bot</span>
                     <span class="lang-en">Try the Bot</span>
                 </a>
-                <a href="https://github.com/SANVITO-LORENZO/telegram-water-bot" target="_blank" class="btn-outline">
+                <a href="https://github.com/SANVITO-LORENZO/telegram-water-bot" target="_blank" rel="noopener noreferrer" class="btn-outline">
                     <i class="fa-brands fa-github"></i> GitHub Code
                 </a>
             </div>
@@ -103,20 +121,20 @@
     <div class="features-section">
         <h2 class="text-reveal">
             <span>
-            <span class="lang-it">Funzionalità Chiave</span>
-            <span class="lang-en">Key Features</span>
+                <span class="lang-it">Funzionalità Chiave</span>
+                <span class="lang-en">Key Features</span>
             </span>
         </h2>
         <div class="features-grid">
             <div class="feature-item">
                 <i class="fa-solid fa-bell"></i>
                 <h4><span class="lang-it">Sveglie Multiple</span><span class="lang-en">Multiple Alarms</span></h4>
-                <p><span class="lang-it">Gestione di promemoria illimitati.</span><span class="lang-en">Management of unlimited reminders.</span></p>
+                <p><span class="lang-it">Gestione di promemoria giornalieri personalizzabili con cron trigger.</span><span class="lang-en">Customizable daily reminders powered by scheduled cron triggers.</span></p>
             </div>
             <div class="feature-item">
                 <i class="fa-solid fa-chart-bar"></i>
                 <h4><span class="lang-it">Barra di Progresso</span><span class="lang-en">Progress Bar</span></h4>
-                <p><span class="lang-it">Visualizzazione grafica dell'obiettivo.</span><span class="lang-en">Graphical display of the goal.</span></p>
+                <p><span class="lang-it">Visualizzazione grafica in tempo reale dell'obiettivo idrico quotidiano.</span><span class="lang-en">Real-time graphical visualization of your daily hydration goal.</span></p>
             </div>
         </div>
     </div>
@@ -124,12 +142,16 @@
 
 <footer id="contatti">
     <div class="footer-content">
-        <p>© 2026 Lorenzo Sanvito</p>
+        <button id="copy-email-btn" class="copy-email-chip" data-email="lorenzo.sanvito.dev@gmail.com">
+            <i class="fa-regular fa-copy"></i>
+            <span>lorenzo.sanvito.dev@gmail.com</span>
+        </button>
         <div class="social-links">
-            <a href="https://github.com/SANVITO-LORENZO" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/SANVITO-LORENZO" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lorenzo-sanvito/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:lorenzo.sanvito.dev@gmail.com"><i class="fa-solid fa-envelope"></i></a>
         </div>
+        <p class="copyright">© 2026 Lorenzo Sanvito</p>
     </div>
 </footer>
 
