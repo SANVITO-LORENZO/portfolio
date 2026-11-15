@@ -288,9 +288,10 @@ main {
 
 .intro {
     max-width: 1220px;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 70px);
+    min-height: calc(100dvh - 70px);
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 50px 20px;
     display: flex;
     align-items: center;
 }
@@ -304,7 +305,7 @@ main {
 }
 
 .hero-3d-stage {
-    min-height: 420px;
+    min-height: 400px;
     width: 100%;
     position: relative;
 }
@@ -312,21 +313,23 @@ main {
 .status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 7px 16px;
+    gap: 8px;
+    padding: 6px 14px;
     border-radius: 999px;
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.32);
     color: var(--text-main);
     font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 24px;
-    backdrop-filter: blur(8px);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .status-dot {
     width: 8px;
     height: 8px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--emerald);
     box-shadow: 0 0 10px var(--emerald);
@@ -339,9 +342,9 @@ main {
 }
 
 .intro h2 {
-    font-size: clamp(2.3rem, 4.6vw, 3.7rem);
+    font-size: clamp(2.2rem, 4.6vw, 3.7rem);
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     line-height: 1.1;
     letter-spacing: -1px;
     min-height: 2.25em;
@@ -358,17 +361,17 @@ main {
 @keyframes blink { 50% { opacity: 0; } }
 
 .hero-sub {
-    font-size: 1.14rem;
+    font-size: 1.12rem;
     color: var(--text-muted);
     max-width: 620px;
-    margin-bottom: 34px;
+    margin-bottom: 30px;
 }
 
 .hero-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 48px;
+    gap: 14px;
+    margin-bottom: 42px;
 }
 
 .btn-primary {
@@ -1094,7 +1097,7 @@ footer {
 .toast-notification.show { opacity: 1; transform: translateY(0); }
 
 /* -------------------------------------------------------------------------- */
-/*  12. RESPONSIVE BREAKPOINTS                                                */
+/*  12. RESPONSIVE BREAKPOINTS (OPTIMIZED FOR MOBILE ABOVE-THE-FOLD)          */
 /* -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
     .hero-layout,
@@ -1103,19 +1106,26 @@ footer {
     .project-grid {
         grid-template-columns: 1fr;
     }
-    .hero-3d-stage { min-height: 250px; order: -1; }
-    .hero-metrics { grid-template-columns: repeat(3, 1fr); }
-    header { padding: 14px 20px; }
+    .hero-3d-stage {
+        min-height: 175px;
+        order: -1;
+    }
+    .hero-metrics {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    header {
+        padding: 12px 20px;
+    }
 }
 
 @media (max-width: 768px) {
     .menu-btn { display: flex; }
     .nav-menu {
         position: fixed;
-        top: 67px;
+        top: 63px;
         right: -100%;
         width: 100%;
-        height: calc(100vh - 67px);
+        height: calc(100vh - 63px);
         background: var(--bg-dark);
         flex-direction: column;
         padding: 40px 20px;
@@ -1124,12 +1134,62 @@ footer {
         border-top: 1px solid var(--border-color);
     }
     .nav-menu.active { right: 0; }
-    .intro { text-align: center; padding-top: 30px; }
-    .hero-sub { margin-left: auto; margin-right: auto; }
-    .hero-btns { justify-content: center; flex-direction: column; }
-    .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
-    .hero-metrics { grid-template-columns: 1fr; }
-    .project-title-container { flex-direction: column; text-align: center; gap: 15px; }
+
+    /* Compact Mobile Hero so 3D Sphere, Title & CTA Buttons fit on 1 screen */
+    .intro {
+        text-align: center;
+        padding: 10px 18px 40px;
+        min-height: auto;
+    }
+    .hero-layout {
+        gap: 12px;
+    }
+    .hero-3d-stage {
+        min-height: 165px;
+    }
+    .status-pill {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        margin-bottom: 14px;
+        max-width: 100%;
+    }
+    .intro h2 {
+        font-size: clamp(1.75rem, 7vw, 2.2rem);
+        min-height: 2.3em;
+        margin-bottom: 12px;
+    }
+    .hero-sub {
+        font-size: 0.96rem;
+        line-height: 1.55;
+        margin: 0 auto 22px;
+    }
+    .hero-btns {
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+    .btn-primary, .btn-secondary {
+        justify-content: center;
+        width: 100%;
+        padding: 13px 22px;
+    }
+    .hero-metrics {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .metric-card {
+        padding: 10px 8px;
+    }
+    .metric-num {
+        font-size: 1.2rem;
+    }
+    .metric-label {
+        font-size: 0.68rem;
+    }
+
+    .project-title-container { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+    .project-info { padding: 22px; }
     .project-info h1, .project-info h2, .project-info p, .tech-stack h3 { text-align: center; }
     .tech-stack ul { justify-content: center; }
     .project-buttons { flex-direction: column; width: 100%; }

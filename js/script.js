@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LORENZO SANVITO — 3D WEBGL PORTFOLIO ENGINE (CONTEXT-AWARE v8)
+   LORENZO SANVITO — 3D WEBGL PORTFOLIO ENGINE (MOBILE-CALIBRATED v8.1)
    Author: Lorenzo Sanvito (https://github.com/SANVITO-LORENZO)
    Notice: Proprietary source code. Unauthorized reproduction is prohibited.
    ========================================================================== */
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ---------------------------------------------------------------------- */
-    /*  02. THREE.JS 3D WEBGL ENGINE (HOME HERO vs. SUBPAGE AMBIENT MODE)     */
+    /*  02. THREE.JS 3D WEBGL ENGINE (MOBILE-OPTIMIZED POSITIONING)           */
     /* ---------------------------------------------------------------------- */
     let webglController = null;
 
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.prepend(canvas);
         }
 
-        // Detect whether user is on Home or a text-heavy Project Detail page
         const isProjectPage = Boolean(document.querySelector('.project-detail'));
         const isHomePage = !isProjectPage;
 
@@ -74,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // 02.A: Main Cyber-Core Group (VISIBLE ONLY ON HOME PAGE)
+        // 02.A: Main Cyber-Core Group (Elevated on Mobile so it sits above the title)
         const coreGroup = new THREE.Group();
         const isDesktop = window.innerWidth > 960;
-        coreGroup.position.set(isDesktop ? 2.15 : 0, 0.25, 0);
+        coreGroup.position.set(isDesktop ? 2.15 : 0, isDesktop ? 0.25 : 1.35, 0);
         coreGroup.visible = isHomePage;
         scene.add(coreGroup);
 
@@ -88,11 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
             new THREE.DodecahedronGeometry(1.16, 1)
         ];
 
+        // Cohesive Cool-Tech Spectrums (Cyan, Royal Blue, Indigo) that never clash with text
         const sectionSpectrums = [
             { primary: 0x0ea5e9, secondary: 0x3b82f6, core: 0x1e3a8a },
+            { primary: 0x38bdf8, secondary: 0x6366f1, core: 0x1e40af },
             { primary: 0x6366f1, secondary: 0x0ea5e9, core: 0x312e81 },
-            { primary: 0xa855f7, secondary: 0x6366f1, core: 0x4c1d95 },
-            { primary: 0x10b981, secondary: 0x0ea5e9, core: 0x064e3b }
+            { primary: 0x06b6d4, secondary: 0x3b82f6, core: 0x155e75 }
         ];
 
         let activeStageIndex = 0;
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ringMat = new THREE.MeshBasicMaterial({
             color: 0x3b82f6,
             transparent: true,
-            opacity: 0.4
+            opacity: 0.38
         });
         const ring1 = new THREE.Mesh(new THREE.TorusGeometry(1.68, 0.012, 16, 100), ringMat);
         const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.98, 0.009, 16, 100), ringMat);
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ring3.rotation.z = Math.PI / 6;
         coreGroup.add(ring1, ring2, ring3);
 
-        // 02.B: Peripheral 3D Shards (Pushed to outer edges on Project Pages)
+        // 02.B: Peripheral 3D Shards
         const shardsGroup = new THREE.Group();
         scene.add(shardsGroup);
         const shardGeo = new THREE.OctahedronGeometry(0.11, 0);
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: 0x38bdf8,
             wireframe: true,
             transparent: true,
-            opacity: isProjectPage ? 0.18 : 0.4
+            opacity: isProjectPage ? 0.18 : 0.35
         });
 
         const shards = [];
@@ -152,8 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < shardCount; i++) {
             const mesh = new THREE.Mesh(shardGeo, shardMat);
             const angle = (i / shardCount) * Math.PI * 2;
-            // Keep center clear on project pages by using a wider minimum radius
-            const minRadius = isProjectPage ? 4.8 : 3.4;
+            const minRadius = isProjectPage ? 4.8 : 3.6;
             const radius = minRadius + Math.random() * 4.0;
             mesh.position.set(
                 Math.cos(angle) * radius,
@@ -170,17 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 02.C: Undulating 3D Cyber-Terrain (Subtle & lower on Project Pages)
+        // 02.C: Undulating 3D Cyber-Terrain
         const planeGeo = new THREE.PlaneGeometry(28, 18, 32, 20);
         const planeMat = new THREE.MeshBasicMaterial({
             color: 0x0ea5e9,
             wireframe: true,
             transparent: true,
-            opacity: isProjectPage ? 0.05 : 0.13
+            opacity: isProjectPage ? 0.05 : 0.11
         });
         const terrainMesh = new THREE.Mesh(planeGeo, planeMat);
         terrainMesh.rotation.x = -Math.PI / 2.15;
-        terrainMesh.position.set(0, isProjectPage ? -3.6 : -2.85, -2.5);
+        terrainMesh.position.set(0, isProjectPage ? -3.6 : -2.95, -2.5);
         scene.add(terrainMesh);
 
         const planePosAttr = planeGeo.attributes.position;
@@ -188,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         baseVertices.set(planePosAttr.array);
 
         // 02.D: Soft 3D Starfield
-        const particleCount = window.innerWidth < 768 ? 450 : isProjectPage ? 700 : 1200;
+        const particleCount = window.innerWidth < 768 ? 420 : isProjectPage ? 700 : 1200;
         const positions = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount * 3; i += 3) {
             positions[i] = (Math.random() - 0.5) * 24;
@@ -199,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const particlesMat = new THREE.PointsMaterial({
             color: 0x38bdf8,
-            size: isProjectPage ? 0.028 : 0.035,
+            size: isProjectPage ? 0.028 : 0.034,
             transparent: true,
-            opacity: isProjectPage ? 0.42 : 0.62
+            opacity: isProjectPage ? 0.4 : 0.6
         });
         const starField = new THREE.Points(particlesGeo, particlesMat);
         scene.add(starField);
@@ -225,13 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
             pointLight1.color.setHex(primaryHex);
         };
 
-        // If on a specific project page, tint the ambient 3D particles to match that project
         if (isProjectPage) {
             const path = window.location.pathname.toLowerCase();
             if (path.includes('ringsync')) applyColorHex(0xec4899, 0x8b5cf6);
             else if (path.includes('water-bot')) applyColorHex(0x0ea5e9, 0x3b82f6);
             else if (path.includes('oltre')) applyColorHex(0x10b981, 0x0ea5e9);
-            else if (path.includes('word-swipe')) applyColorHex(0xf59e0b, 0x3b82f6);
+            else if (path.includes('word-swipe')) applyColorHex(0x38bdf8, 0x3b82f6);
         }
 
         let targetMouseX = 0;
@@ -263,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newStage !== activeStageIndex) {
                 activeStageIndex = newStage;
                 wireMesh.geometry = geometries[activeStageIndex];
-                pulseBoost = 0.9;
+                pulseBoost = 0.85;
 
                 if (!isHoveringCard) {
                     const spec = sectionSpectrums[activeStageIndex];
@@ -280,19 +278,22 @@ document.addEventListener('DOMContentLoaded', () => {
             wireMesh.geometry = geometries[activeStageIndex];
             const spec = sectionSpectrums[activeStageIndex];
             applyColorHex(spec.primary, spec.secondary, spec.core);
-            pulseBoost = 1.35;
+            pulseBoost = 1.25;
         });
 
+        // Desktop-only hover color sync on project cards
         document.querySelectorAll('[data-3d-color]').forEach((card) => {
             card.addEventListener('mouseenter', () => {
+                if (window.innerWidth <= 960) return;
                 const hex = Number(card.getAttribute('data-3d-color'));
                 if (!Number.isNaN(hex)) {
                     isHoveringCard = true;
                     applyColorHex(hex, hex);
-                    pulseBoost = 0.55;
+                    pulseBoost = 0.5;
                 }
             });
             card.addEventListener('mouseleave', () => {
+                if (window.innerWidth <= 960) return;
                 isHoveringCard = false;
                 const spec = sectionSpectrums[activeStageIndex];
                 applyColorHex(spec.primary, spec.secondary, spec.core);
@@ -303,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scene.fog.color.setHex(isLight ? 0xf1f5f9 : 0x04060a);
             planeMat.opacity = isProjectPage
                 ? (isLight ? 0.04 : 0.05)
-                : (isLight ? 0.08 : 0.13);
+                : (isLight ? 0.07 : 0.11);
         };
 
         window.addEventListener('resize', () => {
@@ -325,6 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const speedMult = 1 + pulseBoost * 4.0;
 
             if (isHomePage) {
+                const wideScreen = window.innerWidth > 960;
+
                 wireMesh.rotation.y += 0.005 * speedMult;
                 wireMesh.rotation.x += 0.003 * speedMult;
                 innerMesh.rotation.y -= 0.008 * speedMult;
@@ -333,37 +336,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 ring2.rotation.x = elapsed * 0.3 - scrollProgress * Math.PI;
                 ring3.rotation.y = elapsed * 0.22 + smoothMouseX * 0.5;
 
-                // Automatically dim & push back the 3D Core when scrolling over text sections
-                const inReadingZone = scrollProgress > 0.16;
+                // Dim & push back the 3D Core when scrolling over text sections
+                const inReadingZone = scrollProgress > 0.12;
                 const isLight = document.body.classList.contains('light-mode');
                 const targetWireOpacity = inReadingZone
-                    ? (isLight ? 0.14 : 0.2)
-                    : (isLight ? 0.4 : 0.62);
-                const targetInnerOpacity = inReadingZone ? 0.28 : 0.9;
-                const targetRingOpacity = inReadingZone ? 0.12 : 0.4;
-                const targetZ = inReadingZone ? -2.2 : 0;
+                    ? (isLight ? 0.12 : 0.16)
+                    : (isLight ? 0.4 : 0.58);
+                const targetInnerOpacity = inReadingZone ? 0.22 : 0.88;
+                const targetRingOpacity = inReadingZone ? 0.08 : 0.36;
+                const targetZ = inReadingZone ? -2.4 : 0;
 
                 wireMaterial.opacity += (targetWireOpacity - wireMaterial.opacity) * 0.06;
                 innerSolidMaterial.opacity += (targetInnerOpacity - innerSolidMaterial.opacity) * 0.06;
                 ringMat.opacity += (targetRingOpacity - ringMat.opacity) * 0.06;
                 coreGroup.position.z += (targetZ - coreGroup.position.z) * 0.05;
 
-                const scaleWave = 1 + Math.sin(elapsed * 2.2) * 0.04 + pulseBoost * 0.25;
+                // Compact scale on mobile (0.64) so it fits cleanly above the status pill
+                const baseScale = wideScreen ? 1.0 : 0.64;
+                const scaleWave = baseScale + Math.sin(elapsed * 2.2) * 0.03 + pulseBoost * 0.2;
                 coreGroup.scale.setScalar(scaleWave);
 
-                const wideScreen = window.innerWidth > 960;
                 const targetGroupX = wideScreen
                     ? Math.cos(scrollProgress * Math.PI * 1.5) * 2.35
                     : 0;
-                const targetGroupY = 0.25 + Math.sin(scrollProgress * Math.PI * 2) * 0.35;
+                // On mobile, keep the sphere in the upper slot (y = 1.38) in the Hero
+                const targetGroupY = wideScreen
+                    ? 0.25 + Math.sin(scrollProgress * Math.PI * 2) * 0.35
+                    : 1.38 - scrollProgress * 1.1;
 
-                coreGroup.position.x += (targetGroupX + smoothMouseX * 0.4 - coreGroup.position.x) * 0.05;
-                coreGroup.position.y += (targetGroupY + smoothMouseY * 0.4 - coreGroup.position.y) * 0.05;
+                coreGroup.position.x += (targetGroupX + smoothMouseX * 0.35 - coreGroup.position.x) * 0.05;
+                coreGroup.position.y += (targetGroupY + smoothMouseY * 0.35 - coreGroup.position.y) * 0.05;
             }
 
             // Animate 3D Terrain Wave Vertices
             const arr = planePosAttr.array;
-            const waveAmp = isProjectPage ? 0.14 : 0.26;
+            const waveAmp = isProjectPage ? 0.14 : 0.24;
             for (let i = 0; i < arr.length; i += 3) {
                 const vx = baseVertices[i];
                 const vy = baseVertices[i + 1];
@@ -373,7 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             planePosAttr.needsUpdate = true;
 
-            // Animate Floating Peripheral Shards
             shards.forEach((s) => {
                 s.mesh.rotation.x += s.rotSpeedX * speedMult;
                 s.mesh.rotation.y += s.rotSpeedY * speedMult;
