@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lorenzo Sanvito | Software Developer & Computer Science Student at University of Milano-Bicocca.">
-    <meta name="theme-color" content="#090b10">
-    <title>Lorenzo Sanvito | Software Developer Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Lorenzo Sanvito | Interactive 3D WebGL Portfolio — Software Developer & CS Student at University of Milano-Bicocca.">
+    <meta name="theme-color" content="#04060a">
+    <title>Lorenzo Sanvito | Portfolio</title>
+    <link rel="stylesheet" href="css/style.css?v=7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!-- [UI: Ambient Overlays & Cursor] -->
+<!-- [WEBGL: Fullscreen 3D Canvas] -->
+<canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+<!-- [UI: Page Transition & High-Contrast Dual Cursor] -->
 <div class="page-transition"></div>
-<div class="aurora-bg" aria-hidden="true">
-    <div class="aurora-blob blob-1"></div>
-    <div class="aurora-blob blob-2"></div>
-</div>
 <div class="custom-cursor"></div>
 <div class="custom-cursor-dot"></div>
 
-<!-- [HEADER: Glass Navigation] -->
+<!-- [HEADER: Floating Glass Navbar] -->
 <header>
     <nav>
         <a href="index.html" class="logo">
@@ -65,64 +64,69 @@
 </header>
 
 <main>
-    <!-- [HERO: Typewriter & Call To Action] -->
-    <section class="intro reveal">
-        <div id="particles-js"></div>
+    <!-- [HERO: 3D Spatial Viewport] -->
+    <section class="intro reveal" data-scene-step="0">
+        <div class="hero-layout">
+            <div class="hero-copy">
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    <span class="lang-it">Studente CS @ Milano-Bicocca • Disponibile per progetti</span>
+                    <span class="lang-en">CS Student @ Milano-Bicocca • Available for projects</span>
+                </div>
 
-        <div class="status-pill">
-            <span class="status-dot"></span>
-            <span class="lang-it">Studente CS @ Milano-Bicocca • Disponibile per progetti</span>
-            <span class="lang-en">CS Student @ Milano-Bicocca • Available for projects</span>
-        </div>
+                <h1 id="sr-title" class="sr-only">Sviluppatore Software & Soluzioni Digitali</h1>
+                <h2 id="typewriter-element" aria-hidden="true"></h2>
 
-        <h1 id="sr-title" class="sr-only">Sviluppatore Software & Soluzioni Digitali</h1>
-        <h2 id="typewriter-element" aria-hidden="true"></h2>
+                <p class="hero-sub">
+                    <span class="lang-it">Trasformo logica complessa in architetture software ed esperienze digitali pulite. Studente di Informatica focalizzato sullo sviluppo web, mobile e sull'accessibilità digitale.</span>
+                    <span class="lang-en">I turn complex logic into clean software architectures and digital experiences. Computer Science student focused on web, mobile development, and digital accessibility.</span>
+                </p>
 
-        <p class="hero-sub">
-            <span class="lang-it">Trasformo logica complessa in interfacce pulite, veloci e accessibili. Sviluppatore software orientato al problem-solving, all'architettura dei sistemi e al design di prodotti digitali concreti.</span>
-            <span class="lang-en">I turn complex logic into clean, fast, and accessible interfaces. Software developer driven by problem-solving, system architecture, and building impactful digital products.</span>
-        </p>
+                <div class="hero-btns">
+                    <a href="#progetti" class="btn-primary magnetic">
+                        <span class="lang-it">Esplora i Progetti</span>
+                        <span class="lang-en">Explore Projects</span>
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </a>
+                    <a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary cv-link magnetic">
+                        <i class="fa-solid fa-download"></i>
+                        <span class="lang-it">Scarica CV</span>
+                        <span class="lang-en">Download CV</span>
+                    </a>
+                </div>
 
-        <div class="hero-btns">
-            <a href="#progetti" class="btn-primary magnetic">
-                <span class="lang-it">Esplora i Progetti</span>
-                <span class="lang-en">Explore Projects</span>
-                <i class="fa-solid fa-arrow-down-long"></i>
-            </a>
-            <a href="assets/cv-lorenzo-sanvito.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary cv-link magnetic">
-                <i class="fa-solid fa-download"></i>
-                <span class="lang-it">Scarica CV</span>
-                <span class="lang-en">Download CV</span>
-            </a>
-        </div>
-
-        <div class="hero-metrics">
-            <div class="metric-card">
-                <span class="metric-num">1°</span>
-                <span class="metric-label">
-                    <span class="lang-it">Premio "Idea Impresa" 2025</span>
-                    <span class="lang-en">"Idea Impresa" Winner 2025</span>
-                </span>
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <span class="metric-num">1°</span>
+                        <span class="metric-label">
+                            <span class="lang-it">Premio "Idea Impresa" 2025</span>
+                            <span class="lang-en">"Idea Impresa" Winner 2025</span>
+                        </span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-num">10+</span>
+                        <span class="metric-label">
+                            <span class="lang-it">Linguaggi & Tecnologie</span>
+                            <span class="lang-en">Languages & Tech Stack</span>
+                        </span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-num">100%</span>
+                        <span class="metric-label">
+                            <span class="lang-it">Focus su Privacy & UI</span>
+                            <span class="lang-en">Privacy & UI Focused</span>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="metric-card">
-                <span class="metric-num">10+</span>
-                <span class="metric-label">
-                    <span class="lang-it">Tecnologie & Linguaggi</span>
-                    <span class="lang-en">Languages & Tech Stack</span>
-                </span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-num">100%</span>
-                <span class="metric-label">
-                    <span class="lang-it">Focus su Privacy & UI</span>
-                    <span class="lang-en">Privacy & UI Focused</span>
-                </span>
-            </div>
+
+            <!-- Invisible Interactive Hitbox over the 3D Core -->
+            <div class="hero-3d-stage" id="hero-3d-trigger" aria-hidden="true"></div>
         </div>
     </section>
 
-    <!-- [ABOUT: Bento Grid & Interactive Terminal] -->
-    <section id="about" class="about-section reveal">
+    <!-- [ABOUT: 3D Bento Grid & Interactive Terminal] -->
+    <section id="about" class="about-section reveal" data-scene-step="1">
         <div class="section-header">
             <span class="section-tag">// 01. PROFILE</span>
             <h3 class="text-reveal">
@@ -134,8 +138,7 @@
         </div>
 
         <div class="bento-grid">
-            <!-- Terminal Bio Card -->
-            <div class="bento-card terminal-card glow-card">
+            <div class="bento-card terminal-card glow-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <div class="terminal-bar">
                     <div class="terminal-dots">
                         <span class="dot-red"></span>
@@ -152,14 +155,13 @@
                     </p>
                     <p class="cmd-line"><span class="cmd-prompt">$</span> cat soft_skills.txt</p>
                     <p class="cmd-output">
-                        <span class="lang-it">Unisco la passione per il codice a spiccate doti organizzative e relazionali, consolidate attraverso esperienze in contesti internazionali come i Giochi Olimpici di Milano Cortina 2026.</span>
-                        <span class="lang-en">I combine my passion for code with strong organizational and interpersonal skills, strengthened through international environments like the Milano Cortina 2026 Olympic Games.</span>
+                        <span class="lang-it">Unisco la passione per la tecnologia a spiccate doti organizzative e relazionali, consolidate attraverso esperienze in contesti internazionali come i Giochi Olimpici di Milano Cortina 2026.</span>
+                        <span class="lang-en">I combine my passion for technology with strong organizational and interpersonal skills, strengthened through international environments like the Milano Cortina 2026 Olympic Games.</span>
                     </p>
                 </div>
             </div>
 
-            <!-- Categorized Tech Stack Card -->
-            <div class="bento-card sidebar-box">
+            <div class="bento-card sidebar-box" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <div class="skill-group">
                     <h4><i class="fa-solid fa-code"></i> <span class="lang-it">Linguaggi Core</span><span class="lang-en">Core Languages</span></h4>
                     <div class="pills">
@@ -174,9 +176,10 @@
                 </div>
 
                 <div class="skill-group">
-                    <h4><i class="fa-solid fa-layer-group"></i> <span class="lang-it">Web, Mobile & Cloud</span><span class="lang-en">Web, Mobile & Cloud</span></h4>
+                    <h4><i class="fa-solid fa-layer-group"></i> <span class="lang-it">Web, 3D & Mobile</span><span class="lang-en">Web, 3D & Mobile</span></h4>
                     <div class="pills">
                         <span class="pill">React Native (Expo)</span>
+                        <span class="pill">Three.js / WebGL</span>
                         <span class="pill">HTML5 / CSS3</span>
                         <span class="pill">Node.js</span>
                         <span class="pill">Cloudflare Workers</span>
@@ -197,8 +200,8 @@
         </div>
     </section>
 
-    <!-- [TIMELINE: Experience & Education] -->
-    <section id="esperienza" class="timeline-section reveal">
+    <!-- [TIMELINE: Spatial Roadmap] -->
+    <section id="esperienza" class="timeline-section reveal" data-scene-step="2">
         <div class="section-header" style="text-align: center;">
             <span class="section-tag">// 02. ROADMAP</span>
             <h3 class="text-reveal">
@@ -212,16 +215,16 @@
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-date">2025 - <span class="lang-it">In corso</span><span class="lang-en">Present</span></div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4><span class="lang-it">Laurea Triennale in Informatica</span><span class="lang-en">Bachelor's Degree in Computer Science</span></h4>
                     <p class="timeline-company"><i class="fa-solid fa-building-columns"></i> Università degli Studi di Milano-Bicocca • Milano</p>
-                    <p><span class="lang-it">Approfondimento di algoritmi, logica, architettura degli elaboratori e programmazione avanzata.</span><span class="lang-en">Deep dive into algorithms, logic, computer architecture, and advanced programming.</span></p>
+                    <p><span class="lang-it">Approfondimento di algoritmi, logica, architettura dei sistemi e programmazione avanzata.</span><span class="lang-en">Deep dive into algorithms, logic, system architecture, and advanced programming.</span></p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">02/2026</div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4><span class="lang-it">Volontario Eventi Olimpici - Team26</span><span class="lang-en">Olympic Events Volunteer - Team26</span></h4>
                     <p class="timeline-company"><i class="fa-solid fa-snowflake"></i> Fondazione Milano Cortina 2026 • Bormio</p>
                     <p><span class="lang-it">Gestione logistica, assistenza alle delegazioni internazionali e problem-solving immediato in ambienti dinamici ad alta pressione.</span><span class="lang-en">Logistical support, assistance to international delegations, and immediate problem-solving in high-pressure environments.</span></p>
@@ -230,25 +233,25 @@
 
             <div class="timeline-item">
                 <div class="timeline-date">09/2025 - <span class="lang-it">In corso</span><span class="lang-en">Present</span></div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4><span class="lang-it">Event Steward</span><span class="lang-en">Event Steward</span></h4>
                     <p class="timeline-company"><i class="fa-solid fa-users-gear"></i> Manpower • Lombardia</p>
-                    <p><span class="lang-it">Gestione del pubblico e risoluzione rapida di criticità durante eventi su larga scala.</span><span class="lang-en">Crowd management and rapid issue resolution during large-scale events.</span></p>
+                    <p><span class="lang-it">Gestione del pubblico e risoluzione di criticità durante eventi di larga scala.</span><span class="lang-en">Crowd management and resolution of critical issues during large-scale events.</span></p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">2025</div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4><span class="lang-it">Vincitore Concorso "Idea Impresa"</span><span class="lang-en">Winner of "Idea Impresa" Competition</span></h4>
                     <p class="timeline-company"><i class="fa-solid fa-trophy"></i> Camera di Commercio Como-Lecco</p>
-                    <p><span class="lang-it">Ideazione e sviluppo del progetto AccessEasy. Responsabile del design dell'interfaccia utente (UI) e della logica applicativa.</span><span class="lang-en">Ideation and development of the AccessEasy project. Led UI design and core application logic.</span></p>
+                    <p><span class="lang-it">Ideazione e sviluppo del progetto AccessEasy. Responsabile del design dell'interfaccia utente e dell'implementazione della logica applicativa.</span><span class="lang-en">Ideation and development of the AccessEasy project. Responsible for UI design and application logic implementation.</span></p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">2020 - 2025</div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4><span class="lang-it">Diploma di Perito Informatico</span><span class="lang-en">High School Diploma in Computer Science</span></h4>
                     <p class="timeline-company"><i class="fa-solid fa-graduation-cap"></i> IIS Jean Monnet • Mariano Comense</p>
                     <p><span class="lang-it">Specializzazione in programmazione Object-Oriented (Java/C++), progettazione database SQL e architettura dei sistemi.</span><span class="lang-en">Specialization in Object-Oriented Programming (Java/C++), SQL database design, and system architecture.</span></p>
@@ -257,17 +260,17 @@
 
             <div class="timeline-item">
                 <div class="timeline-date">06/2024</div>
-                <div class="timeline-content glow-card">
+                <div class="timeline-content glow-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
                     <h4>IT Support & Development Intern</h4>
                     <p class="timeline-company"><i class="fa-solid fa-laptop-code"></i> Aristech • Seregno</p>
-                    <p><span class="lang-it">Supporto operativo allo sviluppo di software aziendale, test funzionali e configurazione di sistemi in ambiente business.</span><span class="lang-en">Operational support for corporate software development, functional testing, and business OS configuration.</span></p>
+                    <p><span class="lang-it">Supporto operativo allo sviluppo di software aziendale, test di funzionalità e manutenzione hardware.</span><span class="lang-en">Operational support for corporate software development, functional testing, and hardware maintenance.</span></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- [PROJECTS: Interactive Showcase] -->
-    <section id="progetti">
+    <!-- [PROJECTS: 3D Holographic Cards with Scene Color Sync] -->
+    <section id="progetti" data-scene-step="3">
         <div class="section-header" style="text-align: center;">
             <span class="section-tag">// 03. SELECTED WORKS</span>
             <h3 class="text-reveal">
@@ -287,8 +290,7 @@
         </div>
 
         <div class="grid-container">
-            <!-- Project 01: RingSync -->
-            <a href="projects/ringsync.html" class="glow-card reveal project-card-item" data-category="mobile" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+            <a href="projects/ringsync.html" class="glow-card reveal project-card-item" data-category="mobile" data-3d-color="0xec4899" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.22">
                 <div class="card-image">
                     <span class="card-index">01</span>
                     <i class="fa-solid fa-ring placeholder-icon"></i>
@@ -308,8 +310,7 @@
                 </div>
             </a>
 
-            <!-- Project 02: Water Bot -->
-            <a href="projects/water-bot.html" class="glow-card reveal project-card-item" data-category="web" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+            <a href="projects/water-bot.html" class="glow-card reveal project-card-item" data-category="web" data-3d-color="0x0ea5e9" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.22">
                 <div class="card-image">
                     <span class="card-index">02</span>
                     <i class="fa-solid fa-droplet placeholder-icon"></i>
@@ -318,7 +319,7 @@
                 <div class="card-content">
                     <h3>Water Reminder Bot</h3>
                     <p>
-                        <span class="lang-it">Assistente Telegram serverless su infrastruttura Cloudflare Workers e database KV.</span>
+                        <span class="lang-it">Assistente Telegram serverless sviluppato con Cloudflare Workers e database KV.</span>
                         <span class="lang-en">Serverless Telegram assistant powered by Cloudflare Workers and KV storage.</span>
                     </p>
                     <div class="pills">
@@ -329,8 +330,7 @@
                 </div>
             </a>
 
-            <!-- Project 03: Oltre -->
-            <a href="projects/oltre.html" class="glow-card reveal project-card-item" data-category="mobile" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+            <a href="projects/oltre.html" class="glow-card reveal project-card-item" data-category="mobile" data-3d-color="0x10b981" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.22">
                 <div class="card-image">
                     <span class="card-index">03</span>
                     <i class="fa-solid fa-universal-access placeholder-icon"></i>
@@ -350,8 +350,7 @@
                 </div>
             </a>
 
-            <!-- Project 04: Word Swipe -->
-            <a href="projects/word-swipe.html" class="glow-card reveal project-card-item" data-category="web" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+            <a href="projects/word-swipe.html" class="glow-card reveal project-card-item" data-category="web" data-3d-color="0xf59e0b" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.22">
                 <div class="card-image">
                     <span class="card-index">04</span>
                     <i class="fa-solid fa-spell-check placeholder-icon"></i>
@@ -371,8 +370,7 @@
                 </div>
             </a>
 
-            <!-- WIP Card -->
-            <div class="glow-card reveal project-card-item" data-category="mobile web" style="cursor:default" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="glow-card reveal project-card-item" data-category="mobile web" data-3d-color="0x8b5cf6" style="cursor:default" data-tilt data-tilt-max="8" data-tilt-speed="400">
                 <div class="card-image">
                     <span class="card-index">05</span>
                     <i class="fa-solid fa-gear placeholder-icon spinning-gear"></i>
@@ -380,10 +378,10 @@
                 <div class="card-content">
                     <h3><span class="lang-it">Prossimo Progetto</span><span class="lang-en">Next Lab Project</span></h3>
                     <p>
-                        <span class="lang-it">Nuove architetture e soluzioni software attualmente in fase di prototipazione.</span>
-                        <span class="lang-en">New architectures and software solutions currently in prototyping phase.</span>
+                        <span class="lang-it">Nuove architetture e soluzioni software in fase di sviluppo.</span>
+                        <span class="lang-en">New software architectures and digital solutions under development.</span>
                     </p>
-                    <div class="pills"><span class="pill">In Progress</span></div>
+                    <div class="pills"><span class="pill">WIP</span></div>
                 </div>
             </div>
         </div>
@@ -414,8 +412,8 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=7"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LORENZO SANVITO — PORTFOLIO ENGINE
+   LORENZO SANVITO — 3D WEBGL PORTFOLIO ENGINE (CONTEXT-AWARE v8)
    Author: Lorenzo Sanvito (https://github.com/SANVITO-LORENZO)
    Notice: Proprietary source code. Unauthorized reproduction is prohibited.
    ========================================================================== */
@@ -15,31 +15,468 @@ document.addEventListener('DOMContentLoaded', () => {
     /*  01. SOURCE PROTECTION & ANTI-CLONE GUARD                              */
     /* ---------------------------------------------------------------------- */
     console.log(
-        "%c⚡ LORENZO SANVITO | PORTFOLIO %c\nProtected intellectual property. Crafting clean software @ Milano-Bicocca.",
+        "%c⚡ LORENZO SANVITO | 3D WEBGL PORTFOLIO %c\nProtected intellectual property. Crafting clean software @ Milano-Bicocca.",
         "color: #0ea5e9; font-size: 16px; font-weight: 800;",
         "color: #94a3b8; font-size: 12px;"
     );
 
-    // Block context menu and image dragging
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('dragstart', (e) => e.preventDefault());
-
-    // Intercept inspection and page-saving hotkeys
     document.addEventListener('keydown', (e) => {
-        const key = e.key.toLowerCase();
-        const isDevShortcut =
+        const key = (e.key || '').toLowerCase();
+        if (
             e.key === 'F12' ||
             (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key)) ||
-            (e.ctrlKey && ['u', 's'].includes(key));
-
-        if (isDevShortcut) {
+            (e.ctrlKey && ['u', 's'].includes(key))
+        ) {
             e.preventDefault();
             return false;
         }
     });
 
     /* ---------------------------------------------------------------------- */
-    /*  02. TYPEWRITER ENGINE                                                 */
+    /*  02. THREE.JS 3D WEBGL ENGINE (HOME HERO vs. SUBPAGE AMBIENT MODE)     */
+    /* ---------------------------------------------------------------------- */
+    let webglController = null;
+
+    const initWebGLEngine = () => {
+        if (typeof THREE === 'undefined') return null;
+
+        let canvas = document.getElementById('webgl-canvas');
+        if (!canvas) {
+            canvas = document.createElement('canvas');
+            canvas.id = 'webgl-canvas';
+            canvas.setAttribute('aria-hidden', 'true');
+            document.body.prepend(canvas);
+        }
+
+        // Detect whether user is on Home or a text-heavy Project Detail page
+        const isProjectPage = Boolean(document.querySelector('.project-detail'));
+        const isHomePage = !isProjectPage;
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x04060a, isProjectPage ? 0.085 : 0.065);
+
+        const camera = new THREE.PerspectiveCamera(
+            60,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(0, 0.2, 5.4);
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas,
+            alpha: true,
+            antialias: window.devicePixelRatio < 2,
+            powerPreference: 'high-performance'
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // 02.A: Main Cyber-Core Group (VISIBLE ONLY ON HOME PAGE)
+        const coreGroup = new THREE.Group();
+        const isDesktop = window.innerWidth > 960;
+        coreGroup.position.set(isDesktop ? 2.15 : 0, 0.25, 0);
+        coreGroup.visible = isHomePage;
+        scene.add(coreGroup);
+
+        const geometries = [
+            new THREE.IcosahedronGeometry(1.18, 1),
+            new THREE.TorusKnotGeometry(0.78, 0.23, 100, 16),
+            new THREE.OctahedronGeometry(1.26, 2),
+            new THREE.DodecahedronGeometry(1.16, 1)
+        ];
+
+        const sectionSpectrums = [
+            { primary: 0x0ea5e9, secondary: 0x3b82f6, core: 0x1e3a8a },
+            { primary: 0x6366f1, secondary: 0x0ea5e9, core: 0x312e81 },
+            { primary: 0xa855f7, secondary: 0x6366f1, core: 0x4c1d95 },
+            { primary: 0x10b981, secondary: 0x0ea5e9, core: 0x064e3b }
+        ];
+
+        let activeStageIndex = 0;
+        let isHoveringCard = false;
+
+        const wireMaterial = new THREE.MeshBasicMaterial({
+            color: 0x0ea5e9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        const innerSolidMaterial = new THREE.MeshStandardMaterial({
+            color: 0x1e3a8a,
+            emissive: 0x0ea5e9,
+            emissiveIntensity: 0.4,
+            roughness: 0.15,
+            metalness: 0.88,
+            flatShading: true,
+            transparent: true,
+            opacity: 0.9
+        });
+
+        const wireMesh = new THREE.Mesh(geometries[0], wireMaterial);
+        const innerMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(0.74, 0),
+            innerSolidMaterial
+        );
+        coreGroup.add(wireMesh, innerMesh);
+
+        const ringMat = new THREE.MeshBasicMaterial({
+            color: 0x3b82f6,
+            transparent: true,
+            opacity: 0.4
+        });
+        const ring1 = new THREE.Mesh(new THREE.TorusGeometry(1.68, 0.012, 16, 100), ringMat);
+        const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.98, 0.009, 16, 100), ringMat);
+        const ring3 = new THREE.Mesh(new THREE.TorusGeometry(2.28, 0.006, 16, 100), ringMat);
+        ring1.rotation.x = Math.PI / 3;
+        ring2.rotation.y = Math.PI / 4;
+        ring3.rotation.z = Math.PI / 6;
+        coreGroup.add(ring1, ring2, ring3);
+
+        // 02.B: Peripheral 3D Shards (Pushed to outer edges on Project Pages)
+        const shardsGroup = new THREE.Group();
+        scene.add(shardsGroup);
+        const shardGeo = new THREE.OctahedronGeometry(0.11, 0);
+        const shardMat = new THREE.MeshStandardMaterial({
+            color: 0x38bdf8,
+            wireframe: true,
+            transparent: true,
+            opacity: isProjectPage ? 0.18 : 0.4
+        });
+
+        const shards = [];
+        const shardCount = window.innerWidth < 768 ? 6 : isProjectPage ? 10 : 16;
+        for (let i = 0; i < shardCount; i++) {
+            const mesh = new THREE.Mesh(shardGeo, shardMat);
+            const angle = (i / shardCount) * Math.PI * 2;
+            // Keep center clear on project pages by using a wider minimum radius
+            const minRadius = isProjectPage ? 4.8 : 3.4;
+            const radius = minRadius + Math.random() * 4.0;
+            mesh.position.set(
+                Math.cos(angle) * radius,
+                (Math.random() - 0.5) * 6,
+                (Math.random() - 0.5) * 5 - 2.0
+            );
+            mesh.scale.setScalar(0.5 + Math.random() * 1.2);
+            shardsGroup.add(mesh);
+            shards.push({
+                mesh,
+                rotSpeedX: (Math.random() - 0.5) * 0.015,
+                rotSpeedY: (Math.random() - 0.5) * 0.015,
+                floatOffset: Math.random() * Math.PI * 2
+            });
+        }
+
+        // 02.C: Undulating 3D Cyber-Terrain (Subtle & lower on Project Pages)
+        const planeGeo = new THREE.PlaneGeometry(28, 18, 32, 20);
+        const planeMat = new THREE.MeshBasicMaterial({
+            color: 0x0ea5e9,
+            wireframe: true,
+            transparent: true,
+            opacity: isProjectPage ? 0.05 : 0.13
+        });
+        const terrainMesh = new THREE.Mesh(planeGeo, planeMat);
+        terrainMesh.rotation.x = -Math.PI / 2.15;
+        terrainMesh.position.set(0, isProjectPage ? -3.6 : -2.85, -2.5);
+        scene.add(terrainMesh);
+
+        const planePosAttr = planeGeo.attributes.position;
+        const baseVertices = new Float32Array(planePosAttr.array.length);
+        baseVertices.set(planePosAttr.array);
+
+        // 02.D: Soft 3D Starfield
+        const particleCount = window.innerWidth < 768 ? 450 : isProjectPage ? 700 : 1200;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 24;
+            positions[i + 1] = (Math.random() - 0.5) * 20;
+            positions[i + 2] = (Math.random() - 0.5) * 26;
+        }
+        const particlesGeo = new THREE.BufferGeometry();
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMat = new THREE.PointsMaterial({
+            color: 0x38bdf8,
+            size: isProjectPage ? 0.028 : 0.035,
+            transparent: true,
+            opacity: isProjectPage ? 0.42 : 0.62
+        });
+        const starField = new THREE.Points(particlesGeo, particlesMat);
+        scene.add(starField);
+
+        // 02.E: Dynamic Point Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+        const pointLight1 = new THREE.PointLight(0x0ea5e9, 2.6, 20);
+        pointLight1.position.set(4, 4, 4);
+        const pointLight2 = new THREE.PointLight(0x3b82f6, 1.8, 20);
+        pointLight2.position.set(-4, -3, 2);
+        scene.add(ambientLight, pointLight1, pointLight2);
+
+        const applyColorHex = (primaryHex, secondaryHex = 0x3b82f6, coreHex = null) => {
+            wireMaterial.color.setHex(primaryHex);
+            innerSolidMaterial.emissive.setHex(primaryHex);
+            if (coreHex !== null) innerSolidMaterial.color.setHex(coreHex);
+            ringMat.color.setHex(secondaryHex);
+            planeMat.color.setHex(primaryHex);
+            particlesMat.color.setHex(primaryHex);
+            shardMat.color.setHex(primaryHex);
+            pointLight1.color.setHex(primaryHex);
+        };
+
+        // If on a specific project page, tint the ambient 3D particles to match that project
+        if (isProjectPage) {
+            const path = window.location.pathname.toLowerCase();
+            if (path.includes('ringsync')) applyColorHex(0xec4899, 0x8b5cf6);
+            else if (path.includes('water-bot')) applyColorHex(0x0ea5e9, 0x3b82f6);
+            else if (path.includes('oltre')) applyColorHex(0x10b981, 0x0ea5e9);
+            else if (path.includes('word-swipe')) applyColorHex(0xf59e0b, 0x3b82f6);
+        }
+
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+        let smoothMouseX = 0;
+        let smoothMouseY = 0;
+        let scrollProgress = 0;
+        let pulseBoost = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            targetMouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+        }, { passive: true });
+
+        const updateScrollChoreography = () => {
+            const maxScroll = Math.max(
+                1,
+                document.documentElement.scrollHeight - window.innerHeight
+            );
+            scrollProgress = (window.scrollY || window.pageYOffset) / maxScroll;
+
+            if (!isHomePage) return;
+
+            const newStage = Math.min(
+                geometries.length - 1,
+                Math.floor(scrollProgress * geometries.length)
+            );
+
+            if (newStage !== activeStageIndex) {
+                activeStageIndex = newStage;
+                wireMesh.geometry = geometries[activeStageIndex];
+                pulseBoost = 0.9;
+
+                if (!isHoveringCard) {
+                    const spec = sectionSpectrums[activeStageIndex];
+                    applyColorHex(spec.primary, spec.secondary, spec.core);
+                }
+            }
+        };
+        window.addEventListener('scroll', updateScrollChoreography, { passive: true });
+        updateScrollChoreography();
+
+        document.getElementById('hero-3d-trigger')?.addEventListener('click', () => {
+            if (!isHomePage) return;
+            activeStageIndex = (activeStageIndex + 1) % geometries.length;
+            wireMesh.geometry = geometries[activeStageIndex];
+            const spec = sectionSpectrums[activeStageIndex];
+            applyColorHex(spec.primary, spec.secondary, spec.core);
+            pulseBoost = 1.35;
+        });
+
+        document.querySelectorAll('[data-3d-color]').forEach((card) => {
+            card.addEventListener('mouseenter', () => {
+                const hex = Number(card.getAttribute('data-3d-color'));
+                if (!Number.isNaN(hex)) {
+                    isHoveringCard = true;
+                    applyColorHex(hex, hex);
+                    pulseBoost = 0.55;
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                isHoveringCard = false;
+                const spec = sectionSpectrums[activeStageIndex];
+                applyColorHex(spec.primary, spec.secondary, spec.core);
+            });
+        });
+
+        const setThemePalette = (isLight) => {
+            scene.fog.color.setHex(isLight ? 0xf1f5f9 : 0x04060a);
+            planeMat.opacity = isProjectPage
+                ? (isLight ? 0.04 : 0.05)
+                : (isLight ? 0.08 : 0.13);
+        };
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 60FPS Render Loop
+        const clock = new THREE.Clock();
+        const animate = () => {
+            requestAnimationFrame(animate);
+            const elapsed = clock.getElapsedTime();
+
+            smoothMouseX += (targetMouseX - smoothMouseX) * 0.06;
+            smoothMouseY += (targetMouseY - smoothMouseY) * 0.06;
+            pulseBoost += (0 - pulseBoost) * 0.06;
+
+            const speedMult = 1 + pulseBoost * 4.0;
+
+            if (isHomePage) {
+                wireMesh.rotation.y += 0.005 * speedMult;
+                wireMesh.rotation.x += 0.003 * speedMult;
+                innerMesh.rotation.y -= 0.008 * speedMult;
+
+                ring1.rotation.z = elapsed * 0.4 + scrollProgress * Math.PI;
+                ring2.rotation.x = elapsed * 0.3 - scrollProgress * Math.PI;
+                ring3.rotation.y = elapsed * 0.22 + smoothMouseX * 0.5;
+
+                // Automatically dim & push back the 3D Core when scrolling over text sections
+                const inReadingZone = scrollProgress > 0.16;
+                const isLight = document.body.classList.contains('light-mode');
+                const targetWireOpacity = inReadingZone
+                    ? (isLight ? 0.14 : 0.2)
+                    : (isLight ? 0.4 : 0.62);
+                const targetInnerOpacity = inReadingZone ? 0.28 : 0.9;
+                const targetRingOpacity = inReadingZone ? 0.12 : 0.4;
+                const targetZ = inReadingZone ? -2.2 : 0;
+
+                wireMaterial.opacity += (targetWireOpacity - wireMaterial.opacity) * 0.06;
+                innerSolidMaterial.opacity += (targetInnerOpacity - innerSolidMaterial.opacity) * 0.06;
+                ringMat.opacity += (targetRingOpacity - ringMat.opacity) * 0.06;
+                coreGroup.position.z += (targetZ - coreGroup.position.z) * 0.05;
+
+                const scaleWave = 1 + Math.sin(elapsed * 2.2) * 0.04 + pulseBoost * 0.25;
+                coreGroup.scale.setScalar(scaleWave);
+
+                const wideScreen = window.innerWidth > 960;
+                const targetGroupX = wideScreen
+                    ? Math.cos(scrollProgress * Math.PI * 1.5) * 2.35
+                    : 0;
+                const targetGroupY = 0.25 + Math.sin(scrollProgress * Math.PI * 2) * 0.35;
+
+                coreGroup.position.x += (targetGroupX + smoothMouseX * 0.4 - coreGroup.position.x) * 0.05;
+                coreGroup.position.y += (targetGroupY + smoothMouseY * 0.4 - coreGroup.position.y) * 0.05;
+            }
+
+            // Animate 3D Terrain Wave Vertices
+            const arr = planePosAttr.array;
+            const waveAmp = isProjectPage ? 0.14 : 0.26;
+            for (let i = 0; i < arr.length; i += 3) {
+                const vx = baseVertices[i];
+                const vy = baseVertices[i + 1];
+                arr[i + 2] =
+                    Math.sin(vx * 0.45 + elapsed * 1.2) * waveAmp +
+                    Math.cos(vy * 0.45 + elapsed * 0.9) * waveAmp;
+            }
+            planePosAttr.needsUpdate = true;
+
+            // Animate Floating Peripheral Shards
+            shards.forEach((s) => {
+                s.mesh.rotation.x += s.rotSpeedX * speedMult;
+                s.mesh.rotation.y += s.rotSpeedY * speedMult;
+                s.mesh.position.y += Math.sin(elapsed * 1.4 + s.floatOffset) * 0.0025;
+            });
+            shardsGroup.rotation.y = smoothMouseX * 0.1;
+            shardsGroup.rotation.x = -smoothMouseY * 0.06;
+
+            starField.rotation.y = elapsed * 0.02 + smoothMouseX * 0.1;
+            starField.rotation.x = smoothMouseY * 0.1;
+            starField.position.z = (scrollProgress * 7) % 6;
+
+            camera.position.z = 5.4 - scrollProgress * 0.9;
+            renderer.render(scene, camera);
+        };
+        animate();
+
+        return { setThemePalette };
+    };
+
+    if (typeof THREE !== 'undefined') {
+        webglController = initWebGLEngine();
+    } else {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+        script.onload = () => {
+            webglController = initWebGLEngine();
+            webglController?.setThemePalette(document.body.classList.contains('light-mode'));
+        };
+        document.head.appendChild(script);
+    }
+
+    /* ---------------------------------------------------------------------- */
+    /*  03. HIGH-CONTRAST DUAL CURSOR (AUTO-INJECTED & FAIL-SAFE)             */
+    /* ---------------------------------------------------------------------- */
+    let cursorRing = document.querySelector('.custom-cursor');
+    if (!cursorRing) {
+        cursorRing = document.createElement('div');
+        cursorRing.className = 'custom-cursor';
+        document.body.appendChild(cursorRing);
+    }
+
+    let cursorDot = document.querySelector('.custom-cursor-dot');
+    if (!cursorDot) {
+        cursorDot = document.createElement('div');
+        cursorDot.className = 'custom-cursor-dot';
+        document.body.appendChild(cursorDot);
+    }
+
+    let isTouch = false;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    window.addEventListener('touchstart', () => {
+        isTouch = true;
+        document.body.classList.remove('cursor-ready');
+        cursorRing.style.display = 'none';
+        cursorDot.style.display = 'none';
+    }, { passive: true });
+
+    window.addEventListener('mousemove', (e) => {
+        if (isTouch) return;
+        document.body.classList.add('cursor-ready');
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cursorRing.style.display = 'block';
+        cursorDot.style.display = 'block';
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+    }, { passive: true });
+
+    window.addEventListener('mousedown', () => {
+        if (!isTouch) cursorRing.classList.add('clicking');
+    });
+    window.addEventListener('mouseup', () => {
+        if (!isTouch) cursorRing.classList.remove('clicking');
+    });
+
+    const renderCursor = () => {
+        if (!isTouch) {
+            ringX += (mouseX - ringX) * 0.24;
+            ringY += (mouseY - ringY) * 0.24;
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+        }
+        requestAnimationFrame(renderCursor);
+    };
+    requestAnimationFrame(renderCursor);
+
+    document.querySelectorAll('a, button, .glow-card, .switch, #hero-3d-trigger').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+            if (!isTouch) cursorRing.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            if (!isTouch) cursorRing.classList.remove('hover');
+        });
+    });
+
+    /* ---------------------------------------------------------------------- */
+    /*  04. TYPEWRITER ENGINE                                                 */
     /* ---------------------------------------------------------------------- */
     const typewriterEl = document.getElementById('typewriter-element');
     let typingTimeout;
@@ -65,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* ---------------------------------------------------------------------- */
-    /*  03. PAGE TRANSITION & RAF SCROLL PROGRESS                             */
+    /*  05. PAGE TRANSITION & RAF SCROLL PROGRESS                             */
     /* ---------------------------------------------------------------------- */
     const transitionEl = document.querySelector('.page-transition');
     if (transitionEl) {
@@ -93,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     /* ---------------------------------------------------------------------- */
-    /*  04. RADIAL SPOTLIGHT & MAGNETIC HOVER                                 */
+    /*  06. RADIAL SPOTLIGHT & MAGNETIC HOVER                                 */
     /* ---------------------------------------------------------------------- */
     document.querySelectorAll('.glow-card, .sidebar-box').forEach((card) => {
         card.addEventListener('mousemove', (e) => {
@@ -114,91 +551,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.transform = 'translate(0px, 0px)';
         });
     });
-
-    /* ---------------------------------------------------------------------- */
-    /*  05. DUAL-RING LERP CURSOR (SMART TOUCH DETECTION)                     */
-    /* ---------------------------------------------------------------------- */
-    const cursorRing = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-
-    if (cursorRing) {
-        let isTouch = false;
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let ringX = mouseX;
-        let ringY = mouseY;
-
-        document.addEventListener('touchstart', () => {
-            isTouch = true;
-            cursorRing.style.display = 'none';
-            if (cursorDot) cursorDot.style.display = 'none';
-        }, { passive: true });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isTouch) return;
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorRing.style.display = 'block';
-            if (cursorDot) {
-                cursorDot.style.display = 'block';
-                cursorDot.style.left = `${mouseX}px`;
-                cursorDot.style.top = `${mouseY}px`;
-            }
-        }, { passive: true });
-
-        // Smooth interpolation loop for outer ring
-        const renderCursor = () => {
-            if (!isTouch) {
-                ringX += (mouseX - ringX) * 0.22;
-                ringY += (mouseY - ringY) * 0.22;
-                cursorRing.style.left = `${ringX}px`;
-                cursorRing.style.top = `${ringY}px`;
-            }
-            requestAnimationFrame(renderCursor);
-        };
-        requestAnimationFrame(renderCursor);
-
-        document.querySelectorAll('a, button, .glow-card, .switch').forEach((el) => {
-            el.addEventListener('mouseenter', () => {
-                if (!isTouch) cursorRing.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                if (!isTouch) cursorRing.classList.remove('hover');
-            });
-        });
-    }
-
-    /* ---------------------------------------------------------------------- */
-    /*  06. PARTICLES INITIALIZATION                                          */
-    /* ---------------------------------------------------------------------- */
-    const initParticles = (isLight) => {
-        if (!document.getElementById('particles-js') || typeof particlesJS === 'undefined') return;
-        const particleColor = isLight ? '#0284c7' : '#0ea5e9';
-
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 38, density: { enable: true, value_area: 850 } },
-                color: { value: particleColor },
-                shape: { type: 'circle' },
-                opacity: { value: 0.45, random: false },
-                size: { value: 2.8, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 145,
-                    color: particleColor,
-                    opacity: 0.18,
-                    width: 1
-                },
-                move: { enable: true, speed: 1.6 }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'grab' } },
-                modes: { grab: { distance: 140, line_linked: { opacity: 0.75 } } }
-            },
-            retina_detect: true
-        });
-    };
 
     /* ---------------------------------------------------------------------- */
     /*  07. LOCALIZATION (IT / EN) & DYNAMIC CV ROUTING                       */
@@ -239,21 +591,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ---------------------------------------------------------------------- */
-    /*  08. THEME MANAGEMENT (DARK / LIGHT)                                   */
+    /*  08. THEME MANAGEMENT (DARK / LIGHT + 3D SHADER SYNC)                  */
     /* ---------------------------------------------------------------------- */
     const isLightInit = localStorage.getItem('theme') === 'light';
     if (isLightInit) {
         document.body.classList.add('light-mode');
         themeIcon?.classList.replace('fa-moon', 'fa-sun');
     }
-    initParticles(isLightInit);
+    webglController?.setThemePalette(isLightInit);
 
     themeToggle?.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         const isLight = document.body.classList.contains('light-mode');
         themeIcon?.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        initParticles(isLight);
+        webglController?.setThemePalette(isLight);
     });
 
     /* ---------------------------------------------------------------------- */
@@ -280,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ---------------------------------------------------------------------- */
-    /*  10. PROJECT CATEGORY FILTER & CLIPBOARD TOAST                         */
+    /*  10. PROJECT FILTER & CLIPBOARD TOAST                                  */
     /* ---------------------------------------------------------------------- */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card-item');
@@ -299,7 +651,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Quick-copy email button with floating toast
     const copyEmailBtn = document.getElementById('copy-email-btn');
     if (copyEmailBtn) {
         const toast = document.createElement('div');
